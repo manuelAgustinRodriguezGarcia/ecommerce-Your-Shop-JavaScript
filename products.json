@@ -1,0 +1,86 @@
+[
+  {
+    "nombre": "Tablet Samsung",
+    "precio": 180000,
+    "stock": 12,
+    "imgURL":"images/tablet-sam.png",
+    "descripcion": "Tablet original de la marca Samsung."
+  },
+  {
+    "nombre": "Celular Samsung",
+    "precio": 350000,
+    "stock": 6,
+    "imgURL":"images/celular-sam.png",
+    "descripcion": "Celular original de la marca Samsung."
+  },
+  {
+    "nombre": "Notebook Samsung",
+    "precio": 520000,
+    "stock": 32,
+    "imgURL":"images/notebook-sam.png",
+    "descripcion": "Notebook original de la marca Samsung."
+  },
+  {
+    "nombre": "Teclado HP",
+    "precio": 52000,
+    "stock": 142,
+    "imgURL":"images/teclado-hp.png",
+    "descripcion": "Teclado original de la marca HP."
+  },
+  {
+    "nombre": "Impresora HP",
+    "precio": 150000,
+    "stock": 98,
+    "imgURL":"images/impresora-hp.png",
+    "descripcion": "Impresora original de la marca HP."
+  },
+  {
+    "nombre": "Teclado Logitech",
+    "precio": 95000,
+    "stock": 251,
+    "imgURL":"images/teclado-logi.png",
+    "descripcion": "Teclado original de la marca Logitech."
+  },
+  {
+    "nombre": "Mouse Logitech",
+    "precio": 52000,
+    "stock": 310,
+    "imgURL":"images/mouse-logi.png",
+    "descripcion": "Mouse original de la marca Logitech."
+  },
+  {
+    "nombre": "Joystick Sony",
+    "precio": 53000,
+    "stock": 182,
+    "imgURL":"images/joystick-sony.png",
+    "descripcion": "Joystick original de la marca Sony."
+  },
+  {
+    "nombre": "Auriculares Sony",
+    "precio": 180000,
+    "stock": 12,
+    "imgURL":"images/auri-sony.png",
+    "descripcion": "Auriculares originales de la marca Sony."
+  },
+  {
+    "nombre": "Notebook Apple",
+    "precio": 980000,
+    "stock": 2,
+    "imgURL":"images/notebook-apple.png",
+    "descripcion": "Notebook original de la marca Apple."
+  },
+  {
+    "nombre": "Tablet Apple",
+    "precio": 350000,
+    "stock": 4,
+    "imgURL":"images/tablet-apple.png",
+    "descripcion": "Tablet original de la marca Apple."
+  },
+  {
+    "nombre": "Celular Apple",
+    "precio": 750000,
+    "stock": 12,
+    "imgURL":"images/celular-apple.png",
+    "descripcion": "Celular original de la marca Apple."
+  }
+]
