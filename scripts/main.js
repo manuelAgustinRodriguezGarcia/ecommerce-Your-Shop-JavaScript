@@ -5,7 +5,7 @@ const listaFavoritos = document.getElementById("listaDeFavoritos");
 
 let listaProductos = [];
 
-fetch('products.json')
+fetch('products.json') //para traer los datos del archivo JSON se usa fetch
   .then(response => response.json())
   .then(resultado => {
     listaProductos = resultado; //si funciona bien trae el archivo JSON
@@ -35,7 +35,7 @@ function mostrarResultados(listaProductos) { //muestra los productos encontrados
     productoEncontradoDiv.classList.add('productoEncontrado');
     
     productoEncontradoDiv.innerHTML = `
-      <img src= "${productoX.imgURL}" title= "${productoX.nombre}">
+      <img src="${productoX.imgURL}" title="${productoX.nombre}" alt="Imagen de ${productoX.nombre}">
       <h3>$${productoX.precio}</h3>
       <p>${productoX.nombre} | ${productoX.stock} unid.</p>
       <p>${productoX.descripcion}</p>
@@ -45,7 +45,7 @@ function mostrarResultados(listaProductos) { //muestra los productos encontrados
     
     const botonAgregarFavoritos = productoEncontradoDiv.querySelector('button');
     botonAgregarFavoritos.addEventListener('click', function(){
-      if(!productoYaEnFavoritos(productoX)) {
+      if(!productoYaEnFavoritos(productoX)) { //funcion para que no se agregue mas de una vez a favoritos el mismo producto
         agregarFavoritos(productoX)
       }
     });
@@ -53,37 +53,39 @@ function mostrarResultados(listaProductos) { //muestra los productos encontrados
   });
 }
 
-function productoYaEnFavoritos (productoX) { //verifica si esta en favoritos ya, si esta no lo agrega de nuevo
-  const favoritxs = JSON.parse(localStorage.getItem('favorito')) || [];
-  return favoritxs.some(yaEsta => yaEsta.nombre === productoX.nombre)
+function productoYaEnFavoritos(productoX) { 
+  //si no hay ninguna key "favorito" es falsy y asigna []como valor a fav
+  const fav = JSON.parse(localStorage.getItem('favorito')) || []; 
+  return fav.some(yaEsta => yaEsta.nombre === productoX.nombre)
+  //some (si un producto de la lista coincide con el nombre de yaEsta entonces significa que ya esta en la lista)
 }
 
-function agregarFavoritos(productoX) { //Agrega el producto al localStorage
+function agregarFavoritos(productoX) { 
   const fav = JSON.parse(localStorage.getItem('favorito')) || [];
-  fav.push(productoX);
-  localStorage.setItem('favorito', JSON.stringify(fav));
+  fav.push(productoX);//agrego el producto seleccionado a fav, osea almaceno el valor en la key 'favorito
+  localStorage.setItem('favorito', JSON.stringify(fav)); //Agrega el producto al localStorage
 }
 
 //cuando cargue la pagina que aparezcan los que esten dentro del localStorage con la key 'favorito'
 window.addEventListener('load', function(){ 
-  const fav = JSON.parse(localStorage.getItem('favorito')) || [];
+  const fav = JSON.parse(localStorage.getItem('favorito')) || []; 
   mostrarFavoritos(fav); 
 });
 
 function mostrarFavoritos(fav) { //construye igual que cuando buscas pero ahora en la pagina de favoritos
-  listaFavoritos.innerHTML = ""; //tira un error pero el programa funciona, buscar la manera de arreglarlo
+  listaFavoritos.innerHTML = ""; //esto tira un error cuando volves a index!!!!(ARREGLAR)
   fav.forEach(productoX => {
     const productoFavorito = document.createElement('div');
     productoFavorito.classList.add("productoEncontrado");
 
     productoFavorito.innerHTML = `
-    <img src= "${productoX.imgURL}" title= "${productoX.nombre}">
+    <img src="${productoX.imgURL}" title="${productoX.nombre}" alt="Imagen de ${productoX.nombre}">
     <h3>$${productoX.precio}</h3>
     <p>${productoX.nombre} | ${productoX.stock} unid.</p>
     <p>${productoX.descripcion}</p>
     <button>Eliminar de Favoritos</button>`;
 
-    const botonEliminarFavoritos = productoFavorito.querySelector('button'); //le da funcionalidad al boton de eliminar
+    const botonEliminarFavoritos = productoFavorito.querySelector('button'); //funcionalidad del boton eliminar
     botonEliminarFavoritos.addEventListener('click', function() {
       eliminarDeFavoritos(productoX);
     });
