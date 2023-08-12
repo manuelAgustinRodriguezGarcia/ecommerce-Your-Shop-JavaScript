@@ -129,7 +129,7 @@ main {
   flex-direction: column;
   align-items: center;
   gap: 5px;
-  width: 20%;
+  width: 240px;
   background-color: white;
   border-radius: 4px;
   box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.3);
@@ -137,15 +137,6 @@ main {
 }
 .productoEncontrado:hover {
   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.4);
-}
-.productoEncontrado h3 {
-  font-size: 20px;
-  text-align: center;
-  font-weight: bold;
-  color: black;
-  padding-top: 5px;
-  width: 100%;
-  margin: 0;
 }
 .productoEncontrado p {
   width: 100%;
@@ -175,6 +166,23 @@ main {
   width: 100%;
   padding: 5px;
   object-fit: cover;
+}
+
+.sectionBusqueda, .seccionFav {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  padding-top: 95px;
+}
+.sectionBusqueda h3, .seccionFav h3 {
+  font-size: 20px;
+  font-weight: normal;
+  text-align: center;
+  color: black;
+  padding: 10px;
+  width: 100%;
+  margin: 0;
 }
 
 .resultadoBusquedaDiv {
