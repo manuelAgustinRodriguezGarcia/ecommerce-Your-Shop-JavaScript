@@ -1,21 +1,27 @@
-//Creacion del codigo HTML basico
-
-
-
-
 const inputBusqueda = document.getElementById("inputBusqueda");
 const botonBusqueda = document.getElementById("botonBusqueda");
 const seccionBusqueda = document.getElementById("sectionBusqueda");
 const seccionFav = document.getElementById("seccionFav")
 const resultadoBusqueda = document.getElementById("resultadoBusqueda");
 const listaFavoritos = document.getElementById("listaDeFavoritos");
+const seccionProductos = document.getElementById("productos")
 
 let listaProductos = [];
 
 fetch('products.json') //para traer los datos del archivo JSON se usa fetch
   .then(response => response.json())
-  .then(resultado => {
-    listaProductos = resultado; //si funciona bien trae el archivo JSON
+  .then(resultado => { //si funciona bien trae el archivo JSON
+    listaProductos = resultado;
+    listaProductos.forEach(productoX => {
+      const productosGeneralesDiv = document.createElement('div');
+      productosGeneralesDiv.classList.add('productoGeneral');
+      productosGeneralesDiv.innerHTML = `
+        <img src="${productoX.imgURL}" title="${productoX.nombre}" alt="Imagen de ${productoX.nombre}">
+        <div>
+          <h3>${productoX.nombre}</h3>
+          <p>${productoX.descripcion}</p>
+        </div>`
+      seccionProductos.appendChild(productosGeneralesDiv);})
   })
   .catch(error => console.error('La busqueda del JSON no esta funcionando!', error)); //si no funciona tira este mensaje
 
@@ -117,3 +123,4 @@ function eliminarDeFavoritos(productoX) { //elimina los favoritos que apretes el
   localStorage.setItem('favorito',JSON.stringify(nuevosFavoritos));
   mostrarFavoritos(nuevosFavoritos);
 }
+

@@ -12,9 +12,9 @@
 </head>
 <body>
   <header>
-    <nav class="nav">
-      <div class="nav-top">
-        <a href="index.html" ><img class="nav-top-logo" src="images/logo-shop.png" alt="Logo Your Shop"></a>
+    <nav class="nav" id="nav">
+      <div class="nav-top" id="nav-top">
+        <a href="index.html"><img class="nav-top-logo" src="images/logo-shop.png" alt="Logo Your Shop"></a>
         <div class="nav-top-search">
           <input id="inputBusqueda" class="nav-top-search-input" type="text" placeholder="Encontrá el producto que estas buscando...">
           <button id="botonBusqueda" class="nav-top-search-button" type="submit"><svg xmlns="http://www.w3.org/2000/svg"fill="currentColor" class="bi bi-search " viewBox="0 0 16 16" title="Buscar" alt="Boton para buscar">
@@ -27,8 +27,7 @@
       </div>
       <ul class="nav-bott">
         <li><a class="nav-bott-link" href="favorites.html">Favoritos</a></li>
-        <li><a class="nav-bott-link" href="#metodosDePago">Métodos de Pago</a></li>
-        <li><a class="nav-bott-link" href="#Contacto">Contacto</a></li>
+        <li><a class="nav-bott-link" href="#metodosPago">Métodos de Pago</a></li>
       </ul>
     </nav>
   </header>
@@ -36,6 +35,18 @@
     <section id="sectionBusqueda" class="sectionBusqueda">
       <div id="resultadoBusqueda" class="resultadoBusquedaDiv"></div>
     </section>
+    <h3 class="tituloProductos">Nuestros productos:</h3>
+    <p>Consultar stock y precio en nuestro buscador.</p>
+    <section id="productos" class="productos">
+    </section>
+    <div class="metodosPago" id="metodosPago">
+      <h3>Métodos de Pago</h3>
+      <p>Podes abonar con cualquiera de nuestros métodos de pago cualquiera de nuestros productos!</p>
+      <div class="metodosPago-imagenes">
+        <img src="images/mercadopago.png" alt="">
+        <img src="images/metodosPago.jpg" alt="">
+      </div>
+    </div>
   </main>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
   <script src="scripts/main.js"></script>
