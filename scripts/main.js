@@ -39,13 +39,20 @@ function filtrarProductos(ingresoInput) {
     return [];
   }
   const productosFiltrados = listaProductos.filter(productoX => productoX.nombre.toUpperCase().includes(ingresoInput.toUpperCase()));
-  if (productosFiltrados.length === 0) { //si no se encuentra ningun producto devuelve un ALERT
-    alert("No se encontro ningun producto con el nombre: " + ingresoInput.toUpperCase());
+  if (productosFiltrados.length === 0) { //si no se encuentra ningun producto devuelve un ALERT de swal
+    Swal.fire({
+      position: 'center',
+      icon: 'error',
+      title: 'No se ha encontrado ningún producto!',
+      showConfirmButton: true,
+      allowEnterKey: true,
+      timerProgressBar: true,
+      timer: 3000,
+      iconColor:'rgba(255, 98, 0, 0.70)'
+    })
   }
   return productosFiltrados;
 }
-
- //arregla el error de que cuando no se ingresaba nada se mostraban todos los productos(op.t if else)
 
 function mostrarResultados(listaProductos) {
   seccionBusqueda.innerHTML = `<h3>Productos encontrados:</h3>`;
@@ -67,6 +74,22 @@ function mostrarResultados(listaProductos) {
     botonAgregarFavoritos.addEventListener('click', function(){
       if(!productoYaEnFavoritos(productoX)) { //funcion para que no se agregue mas de una vez a favoritos el mismo producto
         agregarFavoritos(productoX)
+        const Toast = Swal.mixin({ //alert personalizado de swal
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 1500,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
+        })
+        Toast.fire({
+          icon: 'success',
+          iconColor:'rgba(255, 98, 0, 0.70)',
+          title: 'Agregado a Favoritos!'
+        })
       }
     });
     resultadoBusqueda.appendChild(productoEncontradoDiv)
@@ -110,8 +133,22 @@ function mostrarFavoritos(fav) { //construye igual que cuando buscas pero ahora 
     const botonEliminarFavoritos = productoFavorito.querySelector('button'); //funcionalidad del boton eliminar
     botonEliminarFavoritos.addEventListener('click', function() {
       eliminarDeFavoritos(productoX);
+      const Toast = Swal.mixin({ //alert personalizado de swal
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 1500,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+      })
+      Toast.fire({
+        icon: 'error',
+        title: 'Eliminado de Favoritos!'
+      })
     });
-
     listaFavoritos.appendChild(productoFavorito);
     seccionFav.appendChild(listaFavoritos);
   })
