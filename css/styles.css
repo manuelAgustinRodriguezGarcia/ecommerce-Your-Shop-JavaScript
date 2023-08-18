@@ -16,6 +16,7 @@ header {
   backdrop-filter: blur(8px);
   width: 100%;
   height: 90px;
+  z-index: 2;
 }
 
 .nav {
@@ -127,9 +128,12 @@ main {
 .productoEncontrado {
   display: flex;
   flex-direction: column;
+  padding-bottom: 0;
+  position: relative;
   align-items: center;
   gap: 5px;
-  width: 240px;
+  width: 250px;
+  height: 390px;
   background-color: white;
   border-radius: 4px;
   box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.3);
@@ -142,10 +146,12 @@ main {
   width: 100%;
   text-align: left;
   font-size: 12px;
-  padding: 0px 5px;
+  padding: 0px 15px;
   margin: 0;
 }
 .productoEncontrado button {
+  position: absolute;
+  bottom: 0;
   cursor: pointer;
   border: none;
   height: 30px;
@@ -163,9 +169,21 @@ main {
   color: white;
 }
 .productoEncontrado img {
-  width: 100%;
+  width: 240px;
   padding: 5px;
   object-fit: cover;
+}
+.productoEncontrado svg {
+  position: absolute;
+  cursor: pointer;
+  top: 15px;
+  right: 15px;
+  color: #afaeae;
+  background-color: white;
+}
+.productoEncontrado svg path {
+  width: 100%;
+  height: 100%;
 }
 
 .sectionBusqueda, .seccionFav {
@@ -183,6 +201,10 @@ main {
   padding: 10px;
   width: 100%;
   margin: 0;
+}
+
+.seccionFav {
+  padding-bottom: 40px;
 }
 
 .resultadoBusquedaDiv {
@@ -279,6 +301,99 @@ main {
 .metodosPago-imagenes img:nth-child(2) {
   border-left: solid 4px #ebebeb;
   width: 450px;
+}
+
+svg.favoritosActivado {
+  transition: 0.3s;
+  color: rgb(255, 98, 0);
+}
+
+svg.eliminarFav {
+  transition: 0.3s;
+}
+svg.eliminarFav :hover {
+  color: black;
+}
+
+.bi-x {
+  height: 25px;
+  transition: 0.3s;
+}
+.bi-x:hover {
+  color: rgb(0, 0, 0);
+}
+
+.bi-heart-fill {
+  height: 20px;
+}
+
+.seccionCarrito {
+  width: 100%;
+  padding-top: 115px;
+  padding-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#listaDeCarrito {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.productoEnCarrito {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-items: center;
+  width: 50%;
+  border-radius: 5px;
+  padding-right: 30px;
+  justify-content: space-between;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  background-color: white;
+  height: 135px;
+}
+.productoEnCarrito img {
+  height: 90%;
+  border-radius: 5px;
+}
+.productoEnCarrito h3 {
+  font-size: 28px;
+  width: 200px;
+}
+.productoEnCarrito div {
+  width: 400px;
+}
+.productoEnCarrito div h4 {
+  font-size: 25px;
+  font-weight: bold;
+  text-align: left;
+  margin: 0;
+}
+.productoEnCarrito div p {
+  font-size: 15px;
+  font-weight: normal;
+  text-align: left;
+  margin: 0;
+}
+.productoEnCarrito button {
+  border: none;
+  background: none;
+  width: 20px;
+  height: 20px;
+  transition: 0.3s;
+}
+.productoEnCarrito button:hover {
+  transform: translate(0px, -3px);
+}
+.productoEnCarrito button img {
+  transition: 0.3s;
+  width: 20px;
+  height: 20px;
 }
 
 /*# sourceMappingURL=styles.css.map */

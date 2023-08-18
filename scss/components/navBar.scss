@@ -6,6 +6,7 @@ header {
   backdrop-filter: blur(8px);
   width: 100%;
   height: 90px;
+  z-index: 2;
 }
 .nav {
   @include d-flex-col;

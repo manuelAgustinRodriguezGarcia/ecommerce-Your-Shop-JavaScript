@@ -1,0 +1,66 @@
+
+.seccionCarrito {
+  width: 100%;
+  padding-top: 115px;
+  padding-bottom: 50px;
+  @include d-flex-col;
+  align-items: center;
+}
+
+#listaDeCarrito {
+  width: 100%;
+  @include d-flex-col;
+  align-items: center;
+  gap: 20px;
+}
+
+.productoEnCarrito {
+  @include d-flex-row;
+  align-items: center;
+  width: 50%;
+  border-radius: 5px;
+  padding-right: 30px;
+  justify-content:space-between;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  background-color: white;
+  height: 135px;
+  img{
+    height: 90%;
+    border-radius: 5px;
+  }
+  h3 {
+    font-size: 28px;
+    width: 200px;
+  }
+  div {
+    width: 400px;
+    h4 {
+      font-size: 25px;
+      font-weight: bold;
+      text-align: left;
+      margin: 0;
+    }
+    p {
+      font-size: 15px;
+      font-weight: normal;
+      text-align: left;
+      margin: 0;
+    }
+  }
+  
+  button {
+    border: none;
+    background: none;
+    width: 20px;
+    height: 20px;
+    transition: .3s;
+    &:hover {
+      transform: translate(0px, -3px);
+    }
+    img {
+      transition: .3s;
+      width: 20px;
+      height: 20px;
+    }
+  }
+}
