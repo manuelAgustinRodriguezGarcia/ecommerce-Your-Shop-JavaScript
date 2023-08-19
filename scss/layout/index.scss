@@ -5,6 +5,7 @@ main {
   @include d-flex-col;
   align-items: center;
 }
+
 .productoEncontrado {
   @include d-flex-col;
   padding-bottom: 0;
@@ -42,7 +43,7 @@ main {
     border-bottom-right-radius: 4px;
     transition: .3s;
     &:hover {
-      background-color: rgba(255, 98, 0);
+      background-color: $naranjaMain;
       color: white;
     }
   }
@@ -64,7 +65,8 @@ main {
     }
   }
 }
-.sectionBusqueda, .seccionFav {
+
+.sectionBusqueda{
   @include d-flex-col;
   width: 100%;
   align-items: center;
@@ -78,10 +80,6 @@ main {
     width: 100%;
     margin: 0;
   }
-}
-
-.seccionFav {
-  padding-bottom: 40px;
 }
 
 .resultadoBusquedaDiv {
@@ -177,13 +175,6 @@ svg.favoritosActivado {
   color: rgba(255, 98, 0);
 }
 
-svg.eliminarFav {
-  transition: .3s;
-  :hover {
-    color:black;
-  }
-}
-
 .bi-x {
   height: 25px;
   transition: .3s;
@@ -195,4 +186,55 @@ svg.eliminarFav {
 .bi-heart-fill {
   height: 20px;
 }
+
+.carrusel {
+  width: 60%;
+  align-items: center;
+  position: relative;
+  height: 300px;
+  overflow: hidden;
+  margin-top: 15px;
+  border-radius: 5px;
+  &-portada {
+    width: 300%;/*si son 4 imgs serian 400%*/
+    height: 100%;
+    display: flex;
+    transition: all ease .6s;
+    &-img {
+      width: calc(100% / 3);
+      height: 100%;
+      img{
+        width: 100%;
+        height: 100%;
+        object-fit:cover;
+      }
+    }
+  }
+  &-btn-izq, &-btn-der {
+    display: flex;
+    position: absolute;
+    top: 50%;
+    font-size: 10px;
+    background-color: transparent;
+    border-radius: 50%;
+    padding: 5px;
+    cursor: pointer;
+    color: rgba(0, 0, 0, 0.3);
+    transform: translate(0,-50%);
+    transition: .5s ease;
+    user-select: none;
+    &:hover {
+      color: rgba(0, 0, 0, 0.8);
+    }
+  }
+  &-btn {
+    &-der {
+      right: 0;
+    }
+    &-izq {
+      left: 0;
+    }
+  }
+}
+
 

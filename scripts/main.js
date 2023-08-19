@@ -41,7 +41,7 @@ function filtrarProductos(ingresoInput) {
   }
   const productosFiltrados = listaProductos.filter(productoX => productoX.nombre.toUpperCase().includes(ingresoInput.toUpperCase()));
   if (productosFiltrados.length === 0) { //si no se encuentra ningun producto devuelve un ALERT de swal
-    Swal.fire({
+    Swal.fire({ //alert personalizado de swal
       position: 'center',
       icon: 'error',
       title: 'No se ha encontrado ningún producto!',
@@ -52,16 +52,15 @@ function filtrarProductos(ingresoInput) {
       iconColor:'rgba(255, 98, 0, 0.70)'
     })
   }
-  return productosFiltrados;
+  return productosFiltrados ;
 }
 
 function mostrarResultados(listaProductos) { //muestra los resultados de la busqueda en el index
-  seccionBusqueda.innerHTML = `<h3>Productos encontrados:</h3>`;
   resultadoBusqueda.innerHTML = "";
   listaProductos.forEach(productoX => {
     const productoEncontradoDiv = document.createElement('div');
     productoEncontradoDiv.classList.add('productoEncontrado');
-    
+    seccionBusqueda.innerHTML= `<h3>Productos encontrados:</h3>`
     productoEncontradoDiv.innerHTML = `
       <img src="${productoX.imgURL}" title="${productoX.nombre}" alt="Imagen de ${productoX.nombre}">
       <h3>$${productoX.precio}</h3>
@@ -78,7 +77,7 @@ function mostrarResultados(listaProductos) { //muestra los resultados de la busq
     botonAgregarCarrito.addEventListener('click', function (){
       if(!productoYaEnCarrito(productoX)) {
         agregarCarrito(productoX);
-        const Toast = Swal.mixin({ //alert personalizado de swal
+        const Toast = Swal.mixin({ 
           toast: true,
           position: 'top-end',
           showConfirmButton: false,
@@ -167,11 +166,9 @@ function productoYaEnFavoritos(productoX) {
   //some (si un producto de la lista coincide con el nombre de yaEsta entonces significa que ya esta en la lista)
 }
 
-function productoYaEnCarrito(productoX) { 
-  //si no hay ninguna key "carrito" es falsy y asigna [] como valor a carrito
+function productoYaEnCarrito(productoX) {
   const carrito = JSON.parse(localStorage.getItem('carrito')) || []; 
   return carrito.some(yaEsta => yaEsta.nombre === productoX.nombre);
-  //some (si un producto de la lista coincide con el nombre de yaEsta entonces significa que ya esta en la lista)
 }
 
 
@@ -183,8 +180,8 @@ function agregarFavoritos(productoX) {
 //son iguales pero agregan a dos key diferentes (carrito y favoritos)
 function agregarCarrito(productoX) { 
   const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-  carrito.push(productoX);//agrego el producto seleccionado a fav, osea almaceno el valor en la key 'favorito
-  localStorage.setItem('carrito', JSON.stringify(carrito)); //Agrega el producto al localStorage
+  carrito.push(productoX);
+  localStorage.setItem('carrito', JSON.stringify(carrito));
 }
 
 
@@ -330,3 +327,47 @@ function eliminarDeCarrito(productoX) {
   localStorage.setItem('carrito',JSON.stringify(carritoNuevo));
   mostrarCarrito(carritoNuevo);
 }
+
+
+//Carrusel de index
+const botonIzq = document.getElementById("botonIzq");
+const botonDer = document.getElementById("botonDer");
+const portada = document.getElementById("portada");
+const imagenes = document.querySelectorAll(".carrusel-portada-img");//crea la nodelist "imagenes"
+
+botonIzq.addEventListener("click", x => moverIzquierda());
+botonDer.addEventListener("click", x => moverDerecha());
+
+let movimiento = 0;
+let widthImg = 100 / imagenes.length; //divide el 100% en la cantidad de imagenes para que tengan el mismo tamaño
+let contador = 0;
+
+function moverDerecha() {
+  if (contador >= imagenes.length-1) {//como contador empieza en 0 le resto 1 al length de imagenes
+    contador= 0;
+    movimiento = 0;
+    portada.style.transform = `translate(-${movimiento}%)`;
+    portada.style.transition = "none";
+    return;
+  }//asi vuelve a la primer imagen
+    contador ++;
+    movimiento = movimiento + widthImg;
+    portada.style.transform = `translate(-${movimiento}%)`;
+    portada.style.transition = "all ease .6s";
+}
+
+function moverIzquierda() {
+  contador --;
+  if(contador < 0) {
+    contador = imagenes.length-1;//asigno el ultimo valor de imagenes
+    movimiento = widthImg * (imagenes.length-1)
+    portada.style.transform = `translate(-${movimiento}%)`;
+    portada.style.transition = "none";
+    return;
+  }
+    movimiento = movimiento - widthImg;
+    portada.style.transform = `translate(-${movimiento}%)`;
+    portada.style.transition = "all ease .6s";
+}
+
+setInterval(moverDerecha, 6000)
