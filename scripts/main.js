@@ -10,7 +10,7 @@ const seccionCarrito = document.getElementById("seccionCarrito")
 let listaProductos = [];
 
 fetch('products.json') //para traer los datos del archivo JSON se usa fetch
-  .then(response => response.json())
+  .then(resp => resp.json())//lo convierte a json
   .then(resultado => { //si funciona bien trae el archivo JSON
     listaProductos = resultado;
     listaProductos.forEach(productoX => {
@@ -24,7 +24,7 @@ fetch('products.json') //para traer los datos del archivo JSON se usa fetch
         </div>`
       seccionProductos.appendChild(productosGeneralesDiv);})
   })
-  .catch(error => console.error('La busqueda del JSON no esta funcionando!', error)); //si no funciona tira este mensaje
+  .catch(() => console.error("La busqueda del JSON de los productos no esta funcionando!")); //si no funciona tira este mensaje
 
 inputBusqueda.addEventListener('change', empezarBusqueda) //si hace click en el boton o enter busca el producto
 botonBusqueda.addEventListener('click', empezarBusqueda)
