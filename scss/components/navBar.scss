@@ -1,19 +1,21 @@
 header {
   @include d-flex-row;
   justify-content: center;
-  background-color: rgba(255, 98, 0, 0.70);
+  background: rgb(255,98,0);
+  background: linear-gradient(127deg, rgba(255,98,0) 0%, rgba(255,207,0) 100%);
   position: fixed;
   backdrop-filter: blur(8px);
   width: 100%;
   height: 90px;
   z-index: 2;
 }
+
 .nav {
   @include d-flex-col;
   align-items: center;
   gap: 10px;
   padding: 10px 0px;
-  width: 65%;
+  width: 1200px;
   &-top {
     @include d-flex-row;
     align-items: center;
@@ -64,11 +66,32 @@ header {
       }
     }
     &-cart {
-      width: 40px;
-      height: 40px;
+      @include d-flex-row;
+      position: relative;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      color: black;
       transition: .4s;
+      width: 100px;
       &:hover {
-        transform: translate(0px,-2px)
+        transform: translate(0px,-2px);
+      }
+      img {
+        width: 40px;
+        height: 40px;
+      }
+      h5 {
+        @include d-flex-row;
+        transition: .4s;
+        align-items: center;
+        justify-content: center;
+        width: 20px;
+        height: 20px;
+        top: 11%;
+        right: 37.5%;
+        position: absolute;
+        font-size: 15px;
       }
     }
   }
@@ -81,12 +104,21 @@ header {
     margin: 0;
     font-size: 16px;
     &-link {
+      @include d-flex-row;
+      align-items: center;
+      gap: 5px;
       text-decoration: none;
-      color: black;
+      color: rgba(0, 0, 0, 0.75);
       font-size: 16px;
       transition: .3s;
       &:hover {
-        color: white;
+        color: black;
+      }
+      svg {
+        height: 14px;
+      }
+      .bi-person {
+        height: 18px;
       }
     }
   }

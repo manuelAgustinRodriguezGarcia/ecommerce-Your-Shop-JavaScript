@@ -6,8 +6,11 @@ const resultadoBusqueda = document.getElementById("resultadoBusqueda");
 const listaFavoritos = document.getElementById("listaDeFavoritos");
 const seccionProductos = document.getElementById("productos");
 const listaCarrito = document.getElementById("listaDeCarrito");
-const seccionCarrito = document.getElementById("seccionCarrito")
+const seccionCarrito = document.getElementById("seccionCarrito");
+const contadorCarrito = document.getElementById("contadorCarrito");
 let listaProductos = [];
+let contadorCarritoValor = parseInt(localStorage.getItem("contadorCarrito")) || 0;
+contadorCarrito.textContent = contadorCarritoValor
 
 fetch('products.json') //para traer los datos del archivo JSON se usa fetch
   .then(resp => resp.json())//lo convierte a json
@@ -77,6 +80,9 @@ function mostrarResultados(listaProductos) { //muestra los resultados de la busq
     botonAgregarCarrito.addEventListener('click', function (){
       if(!productoYaEnCarrito(productoX)) {
         agregarCarrito(productoX);
+        contadorCarritoValor++;
+        localStorage.setItem("contadorCarrito", contadorCarritoValor);
+        contadorCarrito.innerText = contadorCarritoValor;
         const Toast = Swal.mixin({ 
           toast: true,
           position: 'top-end',
@@ -322,6 +328,9 @@ function eliminarDeFavoritos(productoX) { //elimina los favoritos que apretes el
 }
 
 function eliminarDeCarrito(productoX) {
+  contadorCarritoValor--;
+  localStorage.setItem("contadorCarrito", contadorCarritoValor);
+  contadorCarrito.innerText = contadorCarritoValor;
   const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
   const carritoNuevo = carrito.filter(seVa => seVa.nombre !== productoX.nombre);
   localStorage.setItem('carrito',JSON.stringify(carritoNuevo));
@@ -340,26 +349,26 @@ botonDer.addEventListener("click", x => moverDerecha());
 
 let movimiento = 0;
 let widthImg = 100 / imagenes.length; //divide el 100% en la cantidad de imagenes para que tengan el mismo tamaño
-let contador = 0;
+let contadorPortada = 0;
 
 function moverDerecha() {
-  if (contador >= imagenes.length-1) {//como contador empieza en 0 le resto 1 al length de imagenes
-    contador= 0;
+  if (contadorPortada >= imagenes.length-1) {//como contador empieza en 0 le resto 1 al length de imagenes
+    contadorPortada= 0;
     movimiento = 0;
     portada.style.transform = `translate(-${movimiento}%)`;
     portada.style.transition = "none";
     return;
   }//asi vuelve a la primer imagen
-    contador ++;
+    contadorPortada ++;
     movimiento = movimiento + widthImg;
     portada.style.transform = `translate(-${movimiento}%)`;
-    portada.style.transition = "all ease .6s";
+    portada.style.transition = "all ease .8s";
 }
 
 function moverIzquierda() {
-  contador --;
-  if(contador < 0) {
-    contador = imagenes.length-1;//asigno el ultimo valor de imagenes
+  contadorPortada --;
+  if(contadorPortada < 0) {
+    contadorPortada = imagenes.length-1;//asigno el ultimo valor de imagenes
     movimiento = widthImg * (imagenes.length-1)
     portada.style.transform = `translate(-${movimiento}%)`;
     portada.style.transition = "none";
@@ -367,7 +376,14 @@ function moverIzquierda() {
   }
     movimiento = movimiento - widthImg;
     portada.style.transform = `translate(-${movimiento}%)`;
-    portada.style.transition = "all ease .6s";
+    portada.style.transition = "all ease .8s";
 }
+setInterval(moverDerecha, 6000)//cada 6 seg se mueve sola la imagen del carrusel
 
-setInterval(moverDerecha, 6000)
+//Contacto
+const contactoDiv = document.getElementById("contacto");
+contactoDiv.innerHTML = `
+<h3>Contactanos!</h3>
+<p>Envianos tus dudas o consultas:</p>
+<h1>Agregar un input con funcionalidad que haga algo como mandar un mensaje o asi</h1>
+`
