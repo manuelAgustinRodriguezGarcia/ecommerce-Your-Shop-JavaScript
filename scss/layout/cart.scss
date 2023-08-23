@@ -5,6 +5,7 @@
   padding-bottom: 50px;
   @include d-flex-col;
   align-items: center;
+  gap: 30px ;
 }
 
 #listaDeCarrito {
@@ -31,6 +32,7 @@
   h3 {
     font-size: 28px;
     width: 200px;
+    margin: 0;
   }
   div {
     width: 400px;
@@ -61,6 +63,47 @@
       transition: .3s;
       width: 20px;
       height: 20px;
+    }
+  }
+}
+
+.imagenVacio { //para vacio en favoritos y carrito
+  @include d-flex-col;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+  font-size: 20px;
+  margin-top: 150px;
+  color: rgba(0, 0, 0, 0.75);
+  svg {
+    width: 300px;
+    height: 300px;
+    color: rgba(255, 98, 0, 0.50);
+  }
+}
+
+.precioFinal {
+  @include d-flex-row;
+  align-items: center;
+  justify-content: space-between;
+  width: 50%;
+  padding-top: 10px;
+  border-top: solid 1px #252525;
+  h3 {
+    font-size: 30px;
+    margin: 0;
+  }
+  button {
+    border: none;
+    border-radius: 5px;
+    font-size: 20px;
+    padding: 15px 15px;
+    transition: ease-out .3s;
+    background-color: black;
+    color: white;
+    &:hover {
+      background-color: $naranjaMain;
+      color: white;
     }
   }
 }

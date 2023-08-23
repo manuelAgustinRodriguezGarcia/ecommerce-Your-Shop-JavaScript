@@ -118,12 +118,12 @@ function mostrarResultados(listaProductos) { //muestra los resultados de la busq
         })
       }
     });
-//ambas son para que los botones agreguen al carrito(button) y a favoritos(corazon svg) 
+    //ambas son para que los botones agreguen al carrito(button) y a favoritos(corazon svg) 
     const botonAgregarFavoritos = productoEncontradoDiv.querySelector('svg');
     botonAgregarFavoritos.addEventListener('click', function(){
-      botonAgregarFavoritos.classList.add("favoritosActivado");
+      botonAgregarFavoritos.classList.add("favoritosActivado")
       if(!productoYaEnFavoritos(productoX)) { //funcion para que no se agregue mas de una vez a favoritos el mismo producto
-        agregarFavoritos(productoX)
+        agregarFavoritos(productoX);
         const Toast = Swal.mixin({
           toast: true,
           position: 'top-end',
@@ -165,7 +165,7 @@ function mostrarResultados(listaProductos) { //muestra los resultados de la busq
 }
 
 
-function productoYaEnFavoritos(productoX) { 
+function productoYaEnFavoritos(productoX) {
   //si no hay ninguna key "favorito" es falsy y asigna [] como valor a fav
   const fav = JSON.parse(localStorage.getItem('favorito')) || []; 
   return fav.some(yaEsta => yaEsta.nombre === productoX.nombre);
@@ -237,11 +237,42 @@ function mostrarCarrito(carrito) {
     listaCarrito.appendChild(productoCarrito);
     seccionCarrito.appendChild(listaCarrito);
   })
-  
+  if (carrito.length > 0) {
+    const preciosEnCarrito = carrito.map (productoX => productoX.precio)
+    let precioFinal = preciosEnCarrito.reduce((acumulador,valorActual)=> acumulador + valorActual)
+    console.log(precioFinal)
+    const precioFinalDiv = document.getElementById("precioFinal");
+    precioFinalDiv.classList.add("precioFinal");
+    precioFinalDiv.innerHTML = `
+    <h3>Total: $${precioFinal}</h3>
+    <button>Comprar Ahora</button>`
+    seccionCarrito.appendChild(precioFinalDiv)
+  } else {
+    const precioFinalDiv = document.getElementById("precioFinal");
+    precioFinalDiv.classList.remove("precioFinal")
+    precioFinalDiv.classList.add("imagenVacio");
+    precioFinalDiv.innerHTML = `
+    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-emoji-frown" viewBox="0 0 16 16">
+    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+    <path d="M4.285 12.433a.5.5 0 0 0 .683-.183A3.498 3.498 0 0 1 8 10.5c1.295 0 2.426.703 3.032 1.75a.5.5 0 0 0 .866-.5A4.498 4.498 0 0 0 8 9.5a4.5 4.5 0 0 0-3.898 2.25.5.5 0 0 0 .183.683zM7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5zm4 0c0 .828-.448 1.5-1 1.5s-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5z"/>
+    </svg>
+    <p>No hay ningún producto agregado al carrito!</p>`
+    seccionCarrito.appendChild(precioFinalDiv);
+  }
 }
 
 function mostrarFavoritos(fav) { //construye igual que cuando buscas pero ahora en la pagina de favoritos
-  seccionFav.innerHTML = `<h3>Tus favoritos:</h3>`;
+  if (fav.length === 0) {
+    const favoritosVacio = document.getElementById("seccionFav");
+    favoritosVacio.classList.add("imagenVacio");
+    favoritosVacio.innerHTML = `
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heartbreak" viewBox="0 0 16 16">
+    <path d="M8.867 14.41c13.308-9.322 4.79-16.563.064-13.824L7 3l1.5 4-2 3L8 15a38.094 38.094 0 0 0 .867-.59Zm-.303-1.01-.971-3.237 1.74-2.608a1 1 0 0 0 .103-.906l-1.3-3.468 1.45-1.813c1.861-.948 4.446.002 5.197 2.11.691 1.94-.055 5.521-6.219 9.922Zm-1.25 1.137a36.027 36.027 0 0 1-1.522-1.116C-5.077 4.97 1.842-1.472 6.454.293c.314.12.618.279.904.477L5.5 3 7 7l-1.5 3 1.815 4.537Zm-2.3-3.06-.442-1.106a1 1 0 0 1 .034-.818l1.305-2.61L4.564 3.35a1 1 0 0 1 .168-.991l1.032-1.24c-1.688-.449-3.7.398-4.456 2.128-.711 1.627-.413 4.55 3.706 8.229Z"/>
+    </svg>
+    <p>No hay ningún producto guardado en favoritos!</p>`
+    seccionFav.appendChild(favoritosVacio);
+  }
+  seccionFav.innerHTML = ``;
   listaFavoritos.innerHTML = "";
   fav.forEach(productoX => {
     const productoFavorito = document.createElement('div');
