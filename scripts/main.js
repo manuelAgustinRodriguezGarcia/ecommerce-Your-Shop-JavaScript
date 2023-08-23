@@ -384,7 +384,7 @@ let contadorPortada = 0;
 
 function moverDerecha() {
   if (contadorPortada >= imagenes.length-1) {//como contador empieza en 0 le resto 1 al length de imagenes
-    contadorPortada= 0;
+    contadorPortada = 0;
     movimiento = 0;
     portada.style.transform = `translate(-${movimiento}%)`;
     portada.style.transition = "none";
@@ -414,7 +414,14 @@ setInterval(moverDerecha, 6000)//cada 6 seg se mueve sola la imagen del carrusel
 //Contacto
 const contactoDiv = document.getElementById("contacto");
 contactoDiv.innerHTML = `
-<h3>Contactanos!</h3>
 <p>Envianos tus dudas o consultas:</p>
-<h1>Agregar un input con funcionalidad que haga algo como mandar un mensaje o asi</h1>
+<div>
+  <input type="text" placeholder="Nombre">
+  <input type="email" placeholder="Correo electrónico">
+  <input type="number" placeholder="Número celular">
+</div>
+<textarea placeholder="Ingresa aquí tu consulta..."></textarea>
+<button type="submit">Enviar</button>
 `
+const contactoDivInterno = contactoDiv.querySelector("div");
+contactoDivInterno.classList.add("contacto-div-inputs")

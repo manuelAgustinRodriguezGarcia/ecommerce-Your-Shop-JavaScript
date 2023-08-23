@@ -237,4 +237,81 @@ svg.favoritosActivado {
   }
 }
 
-
+.contacto {
+  width: 100%;
+  @include d-flex-col;
+  align-items: center;
+  background: white;
+  padding: 20px 0px;
+  color: black;
+  &-div {
+    width: 60%;
+    @include d-flex-col;
+    align-items: center;
+    justify-content: space-around;
+    p {
+      margin-bottom: 10px;
+      font-size: 25px;
+    }
+    &-inputs{
+      width: 100%;
+      @include d-flex-row;
+      justify-content: space-between;
+      input {
+        transition: .5s ease;
+        width: 33%;
+        padding: 5px;
+        border: none;
+        border-radius: 5px;
+        margin-bottom: 5px;
+        border: solid 1px white;
+        box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.6);
+        &:hover {
+          box-shadow: 0px 0px 3px rgba(0, 0, 0);
+        }
+        &:focus {
+          outline: none;
+          box-shadow: 0px 0px 3px rgba(0, 0, 0);
+        }
+      }
+      input[type=number]::-webkit-inner-spin-button, //eliminar botones de mas y menos en el input number
+      input[type=number]::-webkit-outer-spin-button { 
+        -webkit-appearance: none; 
+        margin: 0; 
+      }
+    }
+    textarea {
+      border: solid 1px white;
+      border-radius: 5px;
+      transition: .5s ease;
+      box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.6);
+      width: 100%;
+      height: 100px;
+      padding: 5px;
+      resize: none;
+      &:hover {
+        box-shadow: 0px 0px 3px rgba(0, 0, 0);
+      }
+      &:focus {
+        outline: none;
+        box-shadow: 0px 0px 3px rgba(0, 0, 0);
+      }
+    }
+    button {
+      margin-top: 10px;
+      font-size: 20px;
+      transition: .5s ease;
+      border: none;
+      box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.6);
+      background-color: white;
+      color: black;
+      border-radius: 5px;
+      padding: 10px 15px;
+      &:hover {
+        color: white;
+        background-color: $naranjaMain;
+        box-shadow: 0px 0px 2px rgba(0, 0, 0)
+      }
+    }
+  }
+}
