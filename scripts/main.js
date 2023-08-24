@@ -10,7 +10,7 @@ const seccionCarrito = document.getElementById("seccionCarrito");
 const contadorCarrito = document.getElementById("contadorCarrito");
 let listaProductos = [];
 let contadorCarritoValor = parseInt(localStorage.getItem("contadorCarrito")) || 0;
-contadorCarrito.textContent = contadorCarritoValor
+contadorCarrito.textContent = contadorCarritoValor;
 
 fetch('products.json') //para traer los datos del archivo JSON se usa fetch
   .then(resp => resp.json())//lo convierte a json
@@ -66,7 +66,7 @@ function mostrarResultados(listaProductos) { //muestra los resultados de la busq
     seccionBusqueda.innerHTML= `<h3>Productos encontrados:</h3>`
     productoEncontradoDiv.innerHTML = `
       <img src="${productoX.imgURL}" title="${productoX.nombre}" alt="Imagen de ${productoX.nombre}">
-      <h3>$${productoX.precio}</h3>
+      <h3>$${productoX.precio.toLocaleString()}</h3>
       <p>${productoX.nombre} | ${productoX.stock} unid.</p>
       <p>${productoX.descripcion}</p>
       <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
@@ -75,7 +75,6 @@ function mostrarResultados(listaProductos) { //muestra los resultados de la busq
       <button>Agregar al Carrito</button>`;
     
     resultadoBusqueda.appendChild(productoEncontradoDiv);
-    
     const botonAgregarCarrito = productoEncontradoDiv.querySelector('button');
     botonAgregarCarrito.addEventListener('click', function (){
       if(!productoYaEnCarrito(productoX)) {
@@ -120,8 +119,9 @@ function mostrarResultados(listaProductos) { //muestra los resultados de la busq
     });
     //ambas son para que los botones agreguen al carrito(button) y a favoritos(corazon svg) 
     const botonAgregarFavoritos = productoEncontradoDiv.querySelector('svg');
+    productoYaEnFavoritos(productoX) && botonAgregarFavoritos.classList.add("favoritosActivado");//si ya esta que el corazon sea naranja
     botonAgregarFavoritos.addEventListener('click', function(){
-      botonAgregarFavoritos.classList.add("favoritosActivado")
+      botonAgregarFavoritos.classList.add("favoritosActivado");
       if(!productoYaEnFavoritos(productoX)) { //funcion para que no se agregue mas de una vez a favoritos el mismo producto
         agregarFavoritos(productoX);
         const Toast = Swal.mixin({
@@ -141,9 +141,16 @@ function mostrarResultados(listaProductos) { //muestra los resultados de la busq
           title: 'Agregado a Favoritos!'
         })
       }else {
+        function eliminarDeFavoritos(productoX) {//elimina de favoritos si toca de nuevo el corazon
+          const fav = JSON.parse(localStorage.getItem('favorito')) || [];
+          const nuevosFavoritos = fav.filter(seVa => seVa.nombre !== productoX.nombre);
+          localStorage.setItem('favorito',JSON.stringify(nuevosFavoritos));
+          botonAgregarFavoritos.classList.remove("favoritosActivado");
+        }
+        eliminarDeFavoritos(productoX);
         const Toast = Swal.mixin({
           toast: true,
-          position: 'bottom-end',
+          position: 'top-end',
           showConfirmButton: false,
           timer: 1500,
           timerProgressBar: true,
@@ -153,9 +160,8 @@ function mostrarResultados(listaProductos) { //muestra los resultados de la busq
           }
         })
         Toast.fire({
-          icon: 'warning',
-          iconColor:'rgba(255, 98, 0, 0.70)',
-          title: 'El producto ya esta en favoritos!'
+          icon: 'error',
+          title: 'Eliminado de Favoritos!'
         })
       }
     });
@@ -169,7 +175,7 @@ function productoYaEnFavoritos(productoX) {
   //si no hay ninguna key "favorito" es falsy y asigna [] como valor a fav
   const fav = JSON.parse(localStorage.getItem('favorito')) || []; 
   return fav.some(yaEsta => yaEsta.nombre === productoX.nombre);
-  //some (si un producto de la lista coincide con el nombre de yaEsta entonces significa que ya esta en la lista)
+  //some (si un producto de la lista coincide con el nombre de yaEsta entonces significa que ya esta en favoritos)
 }
 
 function productoYaEnCarrito(productoX) {
@@ -213,7 +219,7 @@ function mostrarCarrito(carrito) {
       <h4>${productoX.nombre}<h4>
       <p>${productoX.descripcion}</p>
     </div>
-    <h3>$${productoX.precio}</h3>
+    <h3>$${productoX.precio.toLocaleString()}</h3>
     <button><img src="images/trash-can.png" alt=""></button>`;
     const botonEliminarCarrito = productoCarrito.querySelector('button');
     botonEliminarCarrito.addEventListener("click", function() {
@@ -239,12 +245,11 @@ function mostrarCarrito(carrito) {
   })
   if (carrito.length > 0) {
     const preciosEnCarrito = carrito.map (productoX => productoX.precio)
-    let precioFinal = preciosEnCarrito.reduce((acumulador,valorActual)=> acumulador + valorActual)
-    console.log(precioFinal)
+    let precioFinal = preciosEnCarrito.reduce((acumulador,valorActual)=> acumulador + valorActual);
     const precioFinalDiv = document.getElementById("precioFinal");
     precioFinalDiv.classList.add("precioFinal");
     precioFinalDiv.innerHTML = `
-    <h3>Total: $${precioFinal}</h3>
+    <h3>Total: $${precioFinal.toLocaleString()}</h3>
     <button>Comprar Ahora</button>`
     seccionCarrito.appendChild(precioFinalDiv)
   } else {
@@ -290,6 +295,9 @@ function mostrarFavoritos(fav) { //construye igual que cuando buscas pero ahora 
     const botonAgregarCarrito = productoFavorito.querySelector('button'); //mismo codigo pero en la pag de favoritos
     botonAgregarCarrito.addEventListener("click",function(){
       if(!productoYaEnCarrito(productoX)) {
+        contadorCarritoValor++;
+        localStorage.setItem("contadorCarrito", contadorCarritoValor);
+        contadorCarrito.innerText = contadorCarritoValor;
         agregarCarrito(productoX)
         const Toast = Swal.mixin({ //alert personalizado de swal
           toast: true,
@@ -405,16 +413,16 @@ function moverIzquierda() {
     portada.style.transition = "none";
     return;
   }
-    movimiento = movimiento - widthImg;
-    portada.style.transform = `translate(-${movimiento}%)`;
-    portada.style.transition = "all ease .8s";
+  movimiento = movimiento - widthImg;
+  portada.style.transform = `translate(-${movimiento}%)`;
+  portada.style.transition = "all ease .8s";
 }
 setInterval(moverDerecha, 6000)//cada 6 seg se mueve sola la imagen del carrusel
 
-//Contacto
+//Contacto (index)
 const contactoDiv = document.getElementById("contacto");
 contactoDiv.innerHTML = `
-<p>Envianos tus dudas o consultas:</p>
+<p>Envianos tus dudas o consultas</p>
 <div>
   <input type="text" placeholder="Nombre">
   <input type="email" placeholder="Correo electrónico">

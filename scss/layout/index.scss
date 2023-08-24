@@ -141,7 +141,7 @@ main {
 }
 
 .metodosPago {
-  margin: 40px 0px;
+  margin: 15px 0px;
   padding: 20px;
   width: 60%;
   border-radius: 4px;
@@ -252,11 +252,13 @@ svg.favoritosActivado {
     p {
       margin-bottom: 10px;
       font-size: 25px;
+      text-decoration: underline;
     }
     &-inputs{
       width: 100%;
       @include d-flex-row;
       justify-content: space-between;
+      
       input {
         transition: .5s ease;
         width: 33%;
@@ -265,7 +267,7 @@ svg.favoritosActivado {
         border-radius: 5px;
         margin-bottom: 5px;
         border: solid 1px white;
-        box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.6);
+        box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.4);
         &:hover {
           box-shadow: 0px 0px 3px rgba(0, 0, 0);
         }
@@ -284,7 +286,7 @@ svg.favoritosActivado {
       border: solid 1px white;
       border-radius: 5px;
       transition: .5s ease;
-      box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.6);
+      box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.4);
       width: 100%;
       height: 100px;
       padding: 5px;
@@ -302,7 +304,7 @@ svg.favoritosActivado {
       font-size: 20px;
       transition: .5s ease;
       border: none;
-      box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.6);
+      box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.4);
       background-color: white;
       color: black;
       border-radius: 5px;
@@ -310,7 +312,6 @@ svg.favoritosActivado {
       &:hover {
         color: white;
         background-color: $naranjaMain;
-        box-shadow: 0px 0px 2px rgba(0, 0, 0)
       }
     }
   }
