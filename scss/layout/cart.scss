@@ -50,7 +50,7 @@
     }
   }
   
-  button {
+  #eliminarCart {
     border: none;
     background: none;
     width: 20px;
@@ -101,6 +101,67 @@
     transition: ease-out .3s;
     background-color: black;
     color: white;
+    &:hover {
+      background-color: $naranjaMain;
+      color: white;
+    }
+  }
+}
+
+.precioCarritoDiv {
+  @include d-flex-row;
+  justify-content: space-around;
+  align-items: center;
+  h3 {
+    margin: 0;
+    width: 150px;
+  }
+}
+
+.cantidad {
+  @include d-flex-row;
+  justify-content: center;
+  input {
+    width: 40px;
+    color: black;
+    background-color: rgba(255, 98, 0, 0.4);
+    border: none;
+    height: 30px;
+    text-align: center;
+    margin: 0;
+    outline: none;
+  }
+  button {
+    @include d-flex-row;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 98, 0, 0.7);
+    height: 30px;
+    width: 30px;
+    font-size: 20px;
+    border: none;
+  }
+  
+  input[type=number]::-webkit-inner-spin-button, 
+  input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none; 
+    margin: 0; 
+  }
+  #sumaBtn {
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    outline: none;
+    transition: .4s;  
+    &:hover {
+      background-color: $naranjaMain;
+      color: white;
+    }
+  }
+  #restaBtn {
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    outline: none;
+    transition: .4s;
     &:hover {
       background-color: $naranjaMain;
       color: white;

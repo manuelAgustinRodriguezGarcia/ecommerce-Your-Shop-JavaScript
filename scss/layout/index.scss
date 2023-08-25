@@ -149,10 +149,6 @@ main {
   background-color: white;
   box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.3);
   transition: .4s;
-  &:hover {
-    transform: translate(0px, -5px);
-    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.215);
-  }
   h3, p {
     margin: 0;
   }
@@ -213,13 +209,15 @@ svg.favoritosActivado {
   &-btn-izq, &-btn-der {
     display: flex;
     position: absolute;
+    width: 25px;
+    height: 25px;
     top: 50%;
     font-size: 10px;
     background-color: transparent;
     border-radius: 50%;
     padding: 5px;
     cursor: pointer;
-    color: rgba(0, 0, 0, 0.3);
+    color: rgba(0, 0, 0, 0.4);
     transform: translate(0,-50%);
     transition: .5s ease;
     user-select: none;
@@ -233,86 +231,6 @@ svg.favoritosActivado {
     }
     &-izq {
       left: 0;
-    }
-  }
-}
-
-.contacto {
-  width: 100%;
-  @include d-flex-col;
-  align-items: center;
-  background: white;
-  padding: 20px 0px;
-  color: black;
-  &-div {
-    width: 60%;
-    @include d-flex-col;
-    align-items: center;
-    justify-content: space-around;
-    p {
-      margin-bottom: 10px;
-      font-size: 25px;
-      text-decoration: underline;
-    }
-    &-inputs{
-      width: 100%;
-      @include d-flex-row;
-      justify-content: space-between;
-      
-      input {
-        transition: .5s ease;
-        width: 33%;
-        padding: 5px;
-        border: none;
-        border-radius: 5px;
-        margin-bottom: 5px;
-        border: solid 1px white;
-        box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.4);
-        &:hover {
-          box-shadow: 0px 0px 3px rgba(0, 0, 0);
-        }
-        &:focus {
-          outline: none;
-          box-shadow: 0px 0px 3px rgba(0, 0, 0);
-        }
-      }
-      input[type=number]::-webkit-inner-spin-button, //eliminar botones de mas y menos en el input number
-      input[type=number]::-webkit-outer-spin-button { 
-        -webkit-appearance: none; 
-        margin: 0; 
-      }
-    }
-    textarea {
-      border: solid 1px white;
-      border-radius: 5px;
-      transition: .5s ease;
-      box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.4);
-      width: 100%;
-      height: 100px;
-      padding: 5px;
-      resize: none;
-      &:hover {
-        box-shadow: 0px 0px 3px rgba(0, 0, 0);
-      }
-      &:focus {
-        outline: none;
-        box-shadow: 0px 0px 3px rgba(0, 0, 0);
-      }
-    }
-    button {
-      margin-top: 10px;
-      font-size: 20px;
-      transition: .5s ease;
-      border: none;
-      box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.4);
-      background-color: white;
-      color: black;
-      border-radius: 5px;
-      padding: 10px 15px;
-      &:hover {
-        color: white;
-        background-color: $naranjaMain;
-      }
     }
   }
 }

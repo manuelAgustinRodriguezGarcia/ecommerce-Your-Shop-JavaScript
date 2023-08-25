@@ -314,10 +314,6 @@ main {
   box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.3);
   transition: 0.4s;
 }
-.metodosPago:hover {
-  transform: translate(0px, -5px);
-  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.215);
-}
 .metodosPago h3, .metodosPago p {
   margin: 0;
 }
@@ -379,13 +375,15 @@ svg.favoritosActivado {
 .carrusel-btn-izq, .carrusel-btn-der {
   display: flex;
   position: absolute;
+  width: 25px;
+  height: 25px;
   top: 50%;
   font-size: 10px;
   background-color: transparent;
   border-radius: 50%;
   padding: 5px;
   cursor: pointer;
-  color: rgba(0, 0, 0, 0.3);
+  color: rgba(0, 0, 0, 0.4);
   transform: translate(0, -50%);
   transition: 0.5s ease;
   user-select: none;
@@ -398,89 +396,6 @@ svg.favoritosActivado {
 }
 .carrusel-btn-izq {
   left: 0;
-}
-
-.contacto {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: white;
-  padding: 20px 0px;
-  color: black;
-}
-.contacto-div {
-  width: 60%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
-}
-.contacto-div p {
-  margin-bottom: 10px;
-  font-size: 25px;
-  text-decoration: underline;
-}
-.contacto-div-inputs {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-}
-.contacto-div-inputs input {
-  transition: 0.5s ease;
-  width: 33%;
-  padding: 5px;
-  border: none;
-  border-radius: 5px;
-  margin-bottom: 5px;
-  border: solid 1px white;
-  box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.4);
-}
-.contacto-div-inputs input:hover {
-  box-shadow: 0px 0px 3px rgb(0, 0, 0);
-}
-.contacto-div-inputs input:focus {
-  outline: none;
-  box-shadow: 0px 0px 3px rgb(0, 0, 0);
-}
-.contacto-div-inputs input[type=number]::-webkit-inner-spin-button,
-.contacto-div-inputs input[type=number]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-.contacto-div textarea {
-  border: solid 1px white;
-  border-radius: 5px;
-  transition: 0.5s ease;
-  box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.4);
-  width: 100%;
-  height: 100px;
-  padding: 5px;
-  resize: none;
-}
-.contacto-div textarea:hover {
-  box-shadow: 0px 0px 3px rgb(0, 0, 0);
-}
-.contacto-div textarea:focus {
-  outline: none;
-  box-shadow: 0px 0px 3px rgb(0, 0, 0);
-}
-.contacto-div button {
-  margin-top: 10px;
-  font-size: 20px;
-  transition: 0.5s ease;
-  border: none;
-  box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.4);
-  background-color: white;
-  color: black;
-  border-radius: 5px;
-  padding: 10px 15px;
-}
-.contacto-div button:hover {
-  color: white;
-  background-color: rgb(255, 98, 0);
 }
 
 .seccionFav {
@@ -563,17 +478,17 @@ svg.eliminarFav :hover {
   text-align: left;
   margin: 0;
 }
-.productoEnCarrito button {
+.productoEnCarrito #eliminarCart {
   border: none;
   background: none;
   width: 20px;
   height: 20px;
   transition: 0.3s;
 }
-.productoEnCarrito button:hover {
+.productoEnCarrito #eliminarCart:hover {
   transform: translate(0px, -3px);
 }
-.productoEnCarrito button img {
+.productoEnCarrito #eliminarCart img {
   transition: 0.3s;
   width: 20px;
   height: 20px;
@@ -619,6 +534,72 @@ svg.eliminarFav :hover {
   color: white;
 }
 .precioFinal button:hover {
+  background-color: rgb(255, 98, 0);
+  color: white;
+}
+
+.precioCarritoDiv {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  align-items: center;
+}
+.precioCarritoDiv h3 {
+  margin: 0;
+  width: 150px;
+}
+
+.cantidad {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.cantidad input {
+  width: 40px;
+  color: black;
+  background-color: rgba(255, 98, 0, 0.4);
+  border: none;
+  height: 30px;
+  text-align: center;
+  margin: 0;
+  outline: none;
+}
+.cantidad button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 98, 0, 0.7);
+  height: 30px;
+  width: 30px;
+  font-size: 20px;
+  border: none;
+}
+.cantidad input[type=number]::-webkit-inner-spin-button,
+.cantidad input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.cantidad #sumaBtn {
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  outline: none;
+  transition: 0.4s;
+}
+.cantidad #sumaBtn:hover {
+  background-color: rgb(255, 98, 0);
+  color: white;
+}
+.cantidad #restaBtn {
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  outline: none;
+  transition: 0.4s;
+}
+.cantidad #restaBtn:hover {
   background-color: rgb(255, 98, 0);
   color: white;
 }

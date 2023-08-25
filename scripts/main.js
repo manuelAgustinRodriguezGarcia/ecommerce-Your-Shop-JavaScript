@@ -219,9 +219,62 @@ function mostrarCarrito(carrito) {
       <h4>${productoX.nombre}<h4>
       <p>${productoX.descripcion}</p>
     </div>
-    <h3>$${productoX.precio.toLocaleString()}</h3>
-    <button><img src="images/trash-can.png" alt=""></button>`;
-    const botonEliminarCarrito = productoCarrito.querySelector('button');
+    <div class="cantidad">
+      <button id="restaBtn"> - </button>
+      <input type="number" readonly>
+      <button id="sumaBtn"> + </button>
+    </div>`
+    
+    const restaBtn = productoCarrito.querySelector('#restaBtn');//boton restar
+    const sumaBtn = productoCarrito.querySelector('#sumaBtn');//boton sumar
+    let inputCantidad = productoCarrito.querySelector("input");//input de cantidad
+    inputCantidad.value = productoX.cantidad //el valor del input va a ser siempre igual al de la cantidad seleccionada
+    sumaBtn.addEventListener("click",sumarUno);
+    restaBtn.addEventListener("click",restarUno);
+    
+    let precioParcial = parseInt(productoX.precio) * inputCantidad.value;
+    const precioProductoCarrito = document.createElement('div');
+    precioProductoCarrito.classList.add("precioCarritoDiv");
+    precioProductoCarrito.innerHTML =`<h3>$${precioParcial.toLocaleString()}</h3>
+    <button id="eliminarCart"><img src="images/trash-can.png" alt="Boton para eliminar del carrito"></button>`
+    const precioh3 = precioProductoCarrito.querySelector('h3');
+    function sumarUno() {
+      inputCantidad.value = parseInt(inputCantidad.value) + 1;
+      precioParcial = parseInt(productoX.precio) * inputCantidad.value;
+      precioh3.innerText = "$" + precioParcial.toLocaleString();
+      let productosCarrito = JSON.parse(localStorage.getItem('carrito'));
+      let nuevaCantidad = inputCantidad.value;
+      let mismoNombre = productosCarrito.find(producto => {//especifica para cambiar la cantidad del producto indicado
+        return producto.nombre === productoX.nombre;
+      })
+      if(mismoNombre) {
+        mismoNombre.cantidad = nuevaCantidad;
+        localStorage.setItem('carrito',JSON.stringify(productosCarrito))
+        inputCantidad.value = nuevaCantidad;
+      }
+      location.reload();
+    }
+
+    function restarUno() {
+      if (inputCantidad.value > 1 ) {
+        inputCantidad.value = parseInt(inputCantidad.value) - 1;
+        precioParcial = parseInt(productoX.precio) * inputCantidad.value;
+        precioh3.innerText = "$" + precioParcial.toLocaleString();
+        let productosCarrito = JSON.parse(localStorage.getItem('carrito'));
+        let nuevaCantidad = inputCantidad.value;
+        let mismoNombre = productosCarrito.find(producto => {
+          return producto.nombre === productoX.nombre;
+        })
+        if(mismoNombre) {
+          mismoNombre.cantidad = nuevaCantidad;
+          localStorage.setItem('carrito',JSON.stringify(productosCarrito));
+          inputCantidad.value = nuevaCantidad;
+        }
+        location.reload();
+      }
+    }
+
+    const botonEliminarCarrito = precioProductoCarrito.querySelector('button');
     botonEliminarCarrito.addEventListener("click", function() {
       eliminarDeCarrito(productoX);
       const Toast = Swal.mixin({ //alert personalizado de swal
@@ -240,18 +293,19 @@ function mostrarCarrito(carrito) {
         title: 'Eliminado de tu carrito!'
       })
     })
+    productoCarrito.appendChild(precioProductoCarrito);
     listaCarrito.appendChild(productoCarrito);
     seccionCarrito.appendChild(listaCarrito);
   })
   if (carrito.length > 0) {
-    const preciosEnCarrito = carrito.map (productoX => productoX.precio)
-    let precioFinal = preciosEnCarrito.reduce((acumulador,valorActual)=> acumulador + valorActual);
+    const preciosEnCarrito = carrito.map(productoX =>  productoX.cantidad * productoX.precio);
+    let precioFinal = preciosEnCarrito.reduce((acumulador,valorActual) => acumulador + valorActual);
     const precioFinalDiv = document.getElementById("precioFinal");
     precioFinalDiv.classList.add("precioFinal");
     precioFinalDiv.innerHTML = `
     <h3>Total: $${precioFinal.toLocaleString()}</h3>
     <button>Comprar Ahora</button>`
-    seccionCarrito.appendChild(precioFinalDiv)
+    seccionCarrito.appendChild(precioFinalDiv);
   } else {
     const precioFinalDiv = document.getElementById("precioFinal");
     precioFinalDiv.classList.remove("precioFinal")
@@ -418,18 +472,3 @@ function moverIzquierda() {
   portada.style.transition = "all ease .8s";
 }
 setInterval(moverDerecha, 6000)//cada 6 seg se mueve sola la imagen del carrusel
-
-//Contacto (index)
-const contactoDiv = document.getElementById("contacto");
-contactoDiv.innerHTML = `
-<p>Envianos tus dudas o consultas</p>
-<div>
-  <input type="text" placeholder="Nombre">
-  <input type="email" placeholder="Correo electrónico">
-  <input type="number" placeholder="Número celular">
-</div>
-<textarea placeholder="Ingresa aquí tu consulta..."></textarea>
-<button type="submit">Enviar</button>
-`
-const contactoDivInterno = contactoDiv.querySelector("div");
-contactoDivInterno.classList.add("contacto-div-inputs")

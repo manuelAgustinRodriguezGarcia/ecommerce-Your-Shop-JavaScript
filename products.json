@@ -1,26 +1,30 @@
 [
   {
+    "cantidad": 1,
     "nombre": "Tablet Samsung",
     "precio": 180000,
-    "stock": 12,
+    "stock": 142,
     "imgURL":"images/tablet-sam.png",
     "descripcion": "Tablet original de la marca Samsung."
   },
   {
+    "cantidad": 1,
     "nombre": "Celular Samsung",
     "precio": 350000,
-    "stock": 6,
+    "stock": 97,
     "imgURL":"images/celular-sam.png",
     "descripcion": "Celular original de la marca Samsung."
   },
   {
+    "cantidad": 1,
     "nombre": "Notebook Samsung",
     "precio": 520000,
-    "stock": 32,
+    "stock": 92,
     "imgURL":"images/notebook-sam.png",
     "descripcion": "Notebook original de la marca Samsung."
   },
   {
+    "cantidad": 1,
     "nombre": "Teclado HP",
     "precio": 52000,
     "stock": 142,
@@ -28,6 +32,7 @@
     "descripcion": "Teclado original de la marca HP."
   },
   {
+    "cantidad": 1,
     "nombre": "Impresora HP",
     "precio": 150000,
     "stock": 98,
@@ -35,6 +40,7 @@
     "descripcion": "Impresora original de la marca HP."
   },
   {
+    "cantidad": 1,
     "nombre": "Teclado Logitech",
     "precio": 95000,
     "stock": 251,
@@ -42,6 +48,7 @@
     "descripcion": "Teclado original de la marca Logitech."
   },
   {
+    "cantidad": 1,
     "nombre": "Mouse Logitech",
     "precio": 52000,
     "stock": 310,
@@ -49,6 +56,7 @@
     "descripcion": "Mouse original de la marca Logitech."
   },
   {
+    "cantidad": 1,
     "nombre": "Joystick Sony",
     "precio": 53000,
     "stock": 182,
@@ -56,30 +64,34 @@
     "descripcion": "Joystick original de la marca Sony."
   },
   {
+    "cantidad": 1,
     "nombre": "Auriculares Sony",
     "precio": 180000,
-    "stock": 12,
+    "stock": 350,
     "imgURL":"images/auri-sony.png",
     "descripcion": "Auriculares originales de la marca Sony."
   },
   {
+    "cantidad": 1,
     "nombre": "Notebook Apple",
     "precio": 980000,
-    "stock": 2,
+    "stock": 210,
     "imgURL":"images/notebook-apple.png",
     "descripcion": "Notebook original de la marca Apple."
   },
   {
+    "cantidad": 1,
     "nombre": "Tablet Apple",
     "precio": 350000,
-    "stock": 4,
+    "stock": 230,
     "imgURL":"images/tablet-apple.png",
     "descripcion": "Tablet original de la marca Apple."
   },
   {
+    "cantidad": 1,
     "nombre": "Celular Apple",
     "precio": 750000,
-    "stock": 12,
+    "stock": 126,
     "imgURL":"images/celular-apple.png",
     "descripcion": "Celular original de la marca Apple."
   }
