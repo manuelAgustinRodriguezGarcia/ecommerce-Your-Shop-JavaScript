@@ -448,7 +448,6 @@ svg.eliminarFav :hover {
   align-items: center;
   width: 60%;
   border-radius: 5px;
-  padding-right: 30px;
   justify-content: space-between;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
   background-color: white;
@@ -527,13 +526,17 @@ svg.eliminarFav :hover {
 .precioFinal button {
   border: none;
   border-radius: 5px;
+  width: 200px;
   font-size: 20px;
   padding: 15px 15px;
-  transition: ease-out 0.3s;
+  transition: ease-in-out 0.4s;
   background-color: black;
   color: white;
 }
 .precioFinal button:hover {
+  box-shadow: 0px 0px 5px rgb(255, 98, 0);
+  text-shadow: 0px 0px 3px black;
+  width: 250px;
   background-color: rgb(255, 98, 0);
   color: white;
 }
@@ -557,11 +560,12 @@ svg.eliminarFav :hover {
   justify-content: center;
 }
 .cantidad input {
-  width: 40px;
+  width: 50px;
   color: black;
-  background-color: rgba(255, 98, 0, 0.4);
+  background-color: rgba(255, 98, 0, 0.3);
   border: none;
   height: 30px;
+  font-size: 20px;
   text-align: center;
   margin: 0;
   outline: none;
@@ -574,8 +578,9 @@ svg.eliminarFav :hover {
   justify-content: center;
   background-color: rgba(255, 98, 0, 0.7);
   height: 30px;
-  width: 30px;
-  font-size: 20px;
+  width: 40px;
+  font-size: 25px;
+  font-weight: bold;
   border: none;
 }
 .cantidad input[type=number]::-webkit-inner-spin-button,
@@ -602,6 +607,24 @@ svg.eliminarFav :hover {
 .cantidad #restaBtn:hover {
   background-color: rgb(255, 98, 0);
   color: white;
+}
+
+.actualizarPrecioFinal-oculto {
+  display: none;
+}
+
+.actualizarPrecioFinal {
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.4s;
+  padding: 5px;
+  border-radius: 5px;
+  text-align: center;
+  background-color: red;
+  color: white;
+}
+.actualizarPrecioFinal:hover {
+  background-color: rgb(255, 98, 0);
 }
 
 /*# sourceMappingURL=styles.css.map */

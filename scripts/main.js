@@ -231,35 +231,43 @@ function mostrarCarrito(carrito) {
     inputCantidad.value = productoX.cantidad //el valor del input va a ser siempre igual al de la cantidad seleccionada
     sumaBtn.addEventListener("click",sumarUno);
     restaBtn.addEventListener("click",restarUno);
-    
     let precioParcial = parseInt(productoX.precio) * inputCantidad.value;
     const precioProductoCarrito = document.createElement('div');
     precioProductoCarrito.classList.add("precioCarritoDiv");
     precioProductoCarrito.innerHTML =`<h3>$${precioParcial.toLocaleString()}</h3>
     <button id="eliminarCart"><img src="images/trash-can.png" alt="Boton para eliminar del carrito"></button>`
-    const precioh3 = precioProductoCarrito.querySelector('h3');
+    const precioParcialProducto = precioProductoCarrito.querySelector('h3');
     function sumarUno() {
+      const precioFinalDiv = document.getElementById("precioFinal");//si toca el input que aparezca el boton de actualizar
+      const actualizarPrecioFinal = precioFinalDiv.querySelector('p');
+      actualizarPrecioFinal.classList.remove('actualizarPrecioFinal-oculto')
+      actualizarPrecioFinal.classList.add("actualizarPrecioFinal");
+
       inputCantidad.value = parseInt(inputCantidad.value) + 1;
       precioParcial = parseInt(productoX.precio) * inputCantidad.value;
-      precioh3.innerText = "$" + precioParcial.toLocaleString();
+      precioParcialProducto.innerText = "$" + precioParcial.toLocaleString();
       let productosCarrito = JSON.parse(localStorage.getItem('carrito'));
       let nuevaCantidad = inputCantidad.value;
       let mismoNombre = productosCarrito.find(producto => {//especifica para cambiar la cantidad del producto indicado
         return producto.nombre === productoX.nombre;
       })
       if(mismoNombre) {
-        mismoNombre.cantidad = nuevaCantidad;
-        localStorage.setItem('carrito',JSON.stringify(productosCarrito))
+        mismoNombre.cantidad = nuevaCantidad;//si tiene el mismo nombre, asignale la nueva cantidad del input
         inputCantidad.value = nuevaCantidad;
+        localStorage.setItem('carrito',JSON.stringify(productosCarrito));
       }
-      location.reload();
     }
 
     function restarUno() {
       if (inputCantidad.value > 1 ) {
+        const precioFinalDiv = document.getElementById("precioFinal");
+        const actualizarPrecioFinal = precioFinalDiv.querySelector('p');
+        actualizarPrecioFinal.classList.remove('actualizarPrecioFinal-oculto')
+        actualizarPrecioFinal.classList.add("actualizarPrecioFinal");
+
         inputCantidad.value = parseInt(inputCantidad.value) - 1;
         precioParcial = parseInt(productoX.precio) * inputCantidad.value;
-        precioh3.innerText = "$" + precioParcial.toLocaleString();
+        precioParcialProducto.innerText = "$" + precioParcial.toLocaleString();
         let productosCarrito = JSON.parse(localStorage.getItem('carrito'));
         let nuevaCantidad = inputCantidad.value;
         let mismoNombre = productosCarrito.find(producto => {
@@ -267,10 +275,9 @@ function mostrarCarrito(carrito) {
         })
         if(mismoNombre) {
           mismoNombre.cantidad = nuevaCantidad;
-          localStorage.setItem('carrito',JSON.stringify(productosCarrito));
           inputCantidad.value = nuevaCantidad;
+          localStorage.setItem('carrito',JSON.stringify(productosCarrito));
         }
-        location.reload();
       }
     }
 
@@ -297,15 +304,46 @@ function mostrarCarrito(carrito) {
     listaCarrito.appendChild(productoCarrito);
     seccionCarrito.appendChild(listaCarrito);
   })
+  
   if (carrito.length > 0) {
-    const preciosEnCarrito = carrito.map(productoX =>  productoX.cantidad * productoX.precio);
+    const preciosEnCarrito = carrito.map(productoX => productoX.precio * productoX.cantidad);
     let precioFinal = preciosEnCarrito.reduce((acumulador,valorActual) => acumulador + valorActual);
     const precioFinalDiv = document.getElementById("precioFinal");
     precioFinalDiv.classList.add("precioFinal");
     precioFinalDiv.innerHTML = `
-    <h3>Total: $${precioFinal.toLocaleString()}</h3>
+    <div>
+      <h3>Total: $${precioFinal.toLocaleString()}</h3>
+      <p>Actualizar valor total</p>
+    </div>
     <button>Comprar Ahora</button>`
     seccionCarrito.appendChild(precioFinalDiv);
+    const botonComprarAhora = precioFinalDiv.querySelector('button');
+    const actualizarPrecioFinal = precioFinalDiv.querySelector('p');
+    actualizarPrecioFinal.classList.add('actualizarPrecioFinal-oculto')
+    actualizarPrecioFinal.addEventListener('click' ,() => {
+      location.reload();
+    })
+    botonComprarAhora.addEventListener('click',vaciarDespues);
+    function vaciarDespues() {
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        showConfirmButton: false,
+        title: 'La compra se realizó con éxito!',
+        allowEnterKey: false,
+        timerProgressBar: true,
+        timer: 3000,
+        iconColor:'rgba(255, 98, 0, 0.70)'
+      })
+      setTimeout(vaciarCarrito,3000);//a los 5 segundos cuando termina el alert vacia el carrito
+    }
+    function vaciarCarrito() {
+      location.reload();
+      contadorCarritoValor = 0;
+      localStorage.setItem('contadorCarrito',contadorCarritoValor);
+      const carritoNuevo = 0; 
+      localStorage.setItem('carrito',carritoNuevo);
+    }
   } else {
     const precioFinalDiv = document.getElementById("precioFinal");
     precioFinalDiv.classList.remove("precioFinal")
@@ -351,7 +389,7 @@ function mostrarFavoritos(fav) { //construye igual que cuando buscas pero ahora 
       if(!productoYaEnCarrito(productoX)) {
         contadorCarritoValor++;
         localStorage.setItem("contadorCarrito", contadorCarritoValor);
-        contadorCarrito.innerText = contadorCarritoValor;
+        contadorCarrito.innerText = localStorage.getItem("contadorCarrito");
         agregarCarrito(productoX)
         const Toast = Swal.mixin({ //alert personalizado de swal
           toast: true,
@@ -429,7 +467,6 @@ function eliminarDeCarrito(productoX) {
   localStorage.setItem('carrito',JSON.stringify(carritoNuevo));
   mostrarCarrito(carritoNuevo);
 }
-
 
 //Carrusel de index
 const botonIzq = document.getElementById("botonIzq");
