@@ -63,7 +63,6 @@ function mostrarResultados(listaProductos) { //muestra los resultados de la busq
   listaProductos.forEach(productoX => {
     const productoEncontradoDiv = document.createElement('div');
     productoEncontradoDiv.classList.add('productoEncontrado');
-    seccionBusqueda.innerHTML= `<h3>Productos encontrados:</h3>`
     productoEncontradoDiv.innerHTML = `
       <img src="${productoX.imgURL}" title="${productoX.nombre}" alt="Imagen de ${productoX.nombre}">
       <h3>$${productoX.precio.toLocaleString()}</h3>

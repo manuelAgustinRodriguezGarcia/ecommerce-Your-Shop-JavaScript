@@ -26,6 +26,7 @@ header {
       height: 40px;
     }
     &-search {
+      text-decoration: none;
       @include d-flex-row;
       position: relative;
       align-items: center;
