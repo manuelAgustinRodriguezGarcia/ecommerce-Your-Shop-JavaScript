@@ -12,25 +12,30 @@ let listaProductos = [];
 let contadorCarritoValor = parseInt(localStorage.getItem("contadorCarrito")) || 0;
 contadorCarrito.textContent = contadorCarritoValor;
 
-fetch('products.json') //para traer los datos del archivo JSON se usa fetch
-  .then(resp => resp.json())//lo convierte a json
-  .then(resultado => { //si funciona bien trae el archivo JSON
-    listaProductos = resultado;
-    listaProductos.forEach(productoX => {
-      const productosGeneralesDiv = document.createElement('div');
-      productosGeneralesDiv.classList.add('productoGeneral');
-      productosGeneralesDiv.innerHTML = `
-        <img src="${productoX.imgURL}" title="${productoX.nombre}" alt="Imagen de ${productoX.nombre}">
-        <div>
-          <h3>${productoX.nombre}</h3>
-          <p>${productoX.descripcion}</p>
-        </div>`
-      seccionProductos.appendChild(productosGeneralesDiv);})
-  })
-  .catch(() => console.error("La busqueda del JSON de los productos no esta funcionando!")); //si no funciona tira este mensaje
+document.addEventListener('DOMContentLoaded', function(){ //trae el json solo cuando se carga el index, sino tira el error de que falla la busqueda en favoritos y carrito
+  if(window.location.pathname === '/index.html') {
+    window.addEventListener('load', function(){
+      fetch('products.json') //para traer los datos del archivo JSON
+      .then(resp => resp.json())//lo convierte a json
+      .then(resultado => { //si funciona bien trae el archivo JSON
+        listaProductos = resultado;
+        listaProductos.forEach(productoX => {
+          const productosGeneralesDiv = document.createElement('div');
+          productosGeneralesDiv.classList.add('productoGeneral');
+          productosGeneralesDiv.innerHTML = `
+            <img src="${productoX.imgURL}" title="${productoX.nombre}" alt="Imagen de ${productoX.nombre}">
+            <div>
+              <h3>${productoX.nombre}</h3>
+              <p>${productoX.descripcion}</p>
+            </div>`
+          seccionProductos.appendChild(productosGeneralesDiv);})})
+    .catch(() => console.error("La busqueda del JSON de los productos no esta funcionando!")); //si no funciona el fetch...
+    });
+  }
+})
 
-inputBusqueda.addEventListener('change', empezarBusqueda) //si hace click en el boton o enter busca el producto
-botonBusqueda.addEventListener('click', empezarBusqueda)
+inputBusqueda.addEventListener('change', empezarBusqueda); //si hace click en el boton o enter busca el producto
+botonBusqueda.addEventListener('click', empezarBusqueda);
 
 function empezarBusqueda() {
   const ingresoInput = inputBusqueda.value.trim();
@@ -117,7 +122,7 @@ function mostrarResultados(listaProductos) { //muestra los resultados de la busq
     });
     //ambas son para que los botones agreguen al carrito(button) y a favoritos(corazon svg) 
     const botonAgregarFavoritos = productoEncontradoDiv.querySelector('svg');
-    productoYaEnFavoritos(productoX) && botonAgregarFavoritos.classList.add("favoritosActivado");//si ya esta que el corazon sea naranja
+    productoYaEnFavoritos(productoX) && botonAgregarFavoritos.classList.add("favoritosActivado");//si ya esta en favoritos que el corazon sea naranja
     botonAgregarFavoritos.addEventListener('click', function(){
       botonAgregarFavoritos.classList.add("favoritosActivado");
       if(!productoYaEnFavoritos(productoX)) { //funcion para que no se agregue mas de una vez a favoritos el mismo producto
@@ -166,7 +171,7 @@ function mostrarResultados(listaProductos) { //muestra los resultados de la busq
     resultadoBusqueda.appendChild(productoEncontradoDiv)
     seccionBusqueda.appendChild(resultadoBusqueda)
     seccionBusqueda.classList.add("sectionBusqueda")
-    const carrusel = document.getElementById('carrusel'); //cambia el margin del carrusel asi no queda tan separado
+    const carrusel = document.getElementById('carrusel'); //cambia el margin del carrusel asi no queda muy separado
     carrusel.style.marginTop = `5px`;
   });
 }
@@ -184,10 +189,9 @@ function productoYaEnCarrito(productoX) {
   return carrito.some(yaEsta => yaEsta.nombre === productoX.nombre);
 }
 
-
 function agregarFavoritos(productoX) { 
   const fav = JSON.parse(localStorage.getItem('favorito')) || [];
-  fav.push(productoX);//agrego el producto seleccionado a fav, osea almaceno el valor en la key 'favorito
+  fav.push(productoX);//agrego el producto seleccionado a fav, osea almaceno el valor en la key 'favorito'
   localStorage.setItem('favorito', JSON.stringify(fav)); //Agrega el producto al localStorage
 }
 //son iguales pero agregan a dos key diferentes (carrito y favoritos)
@@ -199,14 +203,22 @@ function agregarCarrito(productoX) {
 
 
 //cuando cargue la pagina que aparezcan los que esten dentro del localStorage con la key 'favorito'
-window.addEventListener('load', function(){
-  const fav = JSON.parse(localStorage.getItem('favorito')) || [];
-  mostrarFavoritos(fav);
-});
+document.addEventListener('DOMContentLoaded', function(){ //arregla el error de intentar cargarlo sin estar en la pagina
+  if(window.location.pathname === '/favorites.html') {
+    window.addEventListener('load', function(){
+      const fav = JSON.parse(localStorage.getItem('favorito')) || [];
+      mostrarFavoritos(fav);
+    });
+  }
+})
 
-window.addEventListener('load', function(){//no funciona si pones las dos en el mismo add event listener(osea fav y carrito) 
-  const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-  mostrarCarrito(carrito);
+document.addEventListener('DOMContentLoaded', function(){
+  if(window.location.pathname === '/cart.html') {
+    window.addEventListener('load', function(){ 
+      const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+      mostrarCarrito(carrito);
+    })
+  }
 })
 
 function mostrarCarrito(carrito) {
@@ -226,23 +238,26 @@ function mostrarCarrito(carrito) {
       <button id="sumaBtn"> + </button>
     </span>`
     
-    const restaBtn = productoCarrito.querySelector('#restaBtn');//boton restar
-    const sumaBtn = productoCarrito.querySelector('#sumaBtn');//boton sumar
-    let inputCantidad = productoCarrito.querySelector("input");//input de cantidad
+    const restaBtn = productoCarrito.querySelector('#restaBtn');
+    const sumaBtn = productoCarrito.querySelector('#sumaBtn');
+    let inputCantidad = productoCarrito.querySelector("input");
     inputCantidad.value = productoX.cantidad //el valor del input va a ser siempre igual al de la cantidad seleccionada
     sumaBtn.addEventListener("click",sumarUno);
     restaBtn.addEventListener("click",restarUno);
     let precioParcial = parseInt(productoX.precio) * inputCantidad.value;
     const precioProductoCarrito = document.createElement('span');
     precioProductoCarrito.classList.add("precioCarritoDiv");
-    precioProductoCarrito.innerHTML =`<h3>$${precioParcial.toLocaleString()}</h3>
-    <button id="eliminarCart"><img src="images/trash-can.png" alt="Boton para eliminar del carrito"></button>`
+    precioProductoCarrito.innerHTML =`
+    <h3>$${precioParcial.toLocaleString()}</h3>
+    <button id="eliminarCart">
+      <img src="images/trash-can.png" alt="Boton para eliminar del carrito">
+    </button>`
     const precioParcialProducto = precioProductoCarrito.querySelector('h3');
     function sumarUno() {
       const precioFinalDiv = document.getElementById("precioFinal");//si toca el input que aparezca el boton de actualizar
       const actualizarPrecioFinal = precioFinalDiv.querySelector('p');
       const botonComprarAhora = precioFinalDiv.querySelector('button');
-      botonComprarAhora.classList.add("botonComprar-oculto");
+      botonComprarAhora.classList.add("botonComprar-oculto");//esconde el boton de compra para evitar la venta sin actualizar el valor final
       actualizarPrecioFinal.classList.remove('actualizarPrecioFinal-oculto')
       actualizarPrecioFinal.classList.add("actualizarPrecioFinal");
 
@@ -285,7 +300,6 @@ function mostrarCarrito(carrito) {
         }
       }
     }
-
     const botonEliminarCarrito = precioProductoCarrito.querySelector('button');
     botonEliminarCarrito.addEventListener("click", function() {
       eliminarDeCarrito(productoX);
@@ -341,7 +355,7 @@ function mostrarCarrito(carrito) {
         timer: 3000,
         iconColor:'rgba(255, 98, 0, 0.70)'
       })
-      setTimeout(vaciarCarrito,3000);//a los 5 segundos cuando termina el alert vacia el carrito
+      setTimeout(vaciarCarrito,3000);//a los 3 segundos cuando termina el alert vacia el carrito
     }
     function vaciarCarrito() {
       location.reload();
@@ -364,9 +378,9 @@ function mostrarCarrito(carrito) {
   }
 }
 
-function mostrarFavoritos(fav) { //construye igual que cuando buscas pero ahora en la pagina de favoritos
+function mostrarFavoritos(fav) {
   if (fav.length === 0) {
-    const favoritosVacio = document.getElementById("seccionFav");
+    const favoritosVacio = document.createElement("div");
     favoritosVacio.classList.add("imagenVacio");
     favoritosVacio.innerHTML = `
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heartbreak" viewBox="0 0 16 16">
@@ -375,7 +389,6 @@ function mostrarFavoritos(fav) { //construye igual que cuando buscas pero ahora 
     <p>No hay ningún producto guardado en favoritos!</p>`
     seccionFav.appendChild(favoritosVacio);
   }
-  seccionFav.innerHTML = ``;
   listaFavoritos.innerHTML = "";
   fav.forEach(productoX => {
     const productoFavorito = document.createElement('div');
@@ -432,7 +445,6 @@ function mostrarFavoritos(fav) { //construye igual que cuando buscas pero ahora 
         })
       }
     })
-
     const botonEliminarFavoritos = productoFavorito.querySelector('svg'); //funcionalidad del boton eliminar
     botonEliminarFavoritos.addEventListener('click', function() {
       eliminarDeFavoritos(productoX);
@@ -456,8 +468,8 @@ function mostrarFavoritos(fav) { //construye igual que cuando buscas pero ahora 
     seccionFav.appendChild(listaFavoritos);
   })
 }
-
-function eliminarDeFavoritos(productoX) { //elimina los favoritos que apretes el boton
+//si el filter encuentra un producto en favoritos o en el carrito con el mismo nombre lo elimina
+function eliminarDeFavoritos(productoX) {
   const fav = JSON.parse(localStorage.getItem('favorito')) || [];
   const nuevosFavoritos = fav.filter(seVa => seVa.nombre !== productoX.nombre);
   localStorage.setItem('favorito',JSON.stringify(nuevosFavoritos));
@@ -475,7 +487,9 @@ function eliminarDeCarrito(productoX) {
 }
 
 //Carrusel de index
-const botonIzq = document.getElementById("botonIzq");
+document.addEventListener('DOMContentLoaded', function(){ //arregla el error de intentar cargarlo sin que este en la pagina
+  if(window.location.pathname === '/index.html') {
+    const botonIzq = document.getElementById("botonIzq");
 const botonDer = document.getElementById("botonDer");
 const portada = document.getElementById("portada");
 const imagenes = document.querySelectorAll(".carrusel-portada-img");//crea la nodelist "imagenes"
@@ -514,4 +528,6 @@ function moverIzquierda() {
   portada.style.transform = `translate(-${movimiento}%)`;
   portada.style.transition = "all ease .8s";
 }
-setInterval(moverDerecha, 6000)//cada 6 seg se mueve sola la imagen del carrusel
+  setInterval(moverDerecha, 6000)//cada 6 seg se mueve sola la imagen del carrusel
+  }
+})
