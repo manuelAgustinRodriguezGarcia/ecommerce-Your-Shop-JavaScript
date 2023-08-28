@@ -640,14 +640,14 @@ svg.favoritosActivado {
   .nav-top-search-input {
     width: 100%;
     height: 40px;
-    font-size: 11px;
+    font-size: 10px;
   }
   .nav-top-search-input:focus {
     outline: none;
   }
   .nav-top-search-button {
-    width: 30px;
-    right: 5px;
+    width: 35px;
+    right: 0px;
   }
   .nav-top-search-button .bi-search {
     height: 15px;
@@ -1032,7 +1032,7 @@ svg.favoritosActivado {
   .nav-top-search-input {
     width: 100%;
     height: 40px;
-    font-size: 2vh;
+    font-size: 14px;
   }
   .nav-top-search-input:focus {
     outline: none;
