@@ -144,9 +144,6 @@ header {
 .nav-bott-link svg {
   height: 14px;
 }
-.nav-bott-link .bi-person {
-  height: 18px;
-}
 
 .bi-search {
   color: rgba(0, 0, 0, 0.5);
@@ -171,7 +168,7 @@ main {
   align-items: center;
   gap: 5px;
   width: 250px;
-  height: 390px;
+  height: 375px;
   background-color: white;
   border-radius: 4px;
   box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.3);
@@ -187,13 +184,18 @@ main {
   padding: 0px 15px;
   margin: 0;
 }
+.productoEncontrado h3 {
+  margin: 0;
+  font-weight: bold;
+  font-size: 22px;
+}
 .productoEncontrado button {
   position: absolute;
   bottom: 0;
   cursor: pointer;
   border: none;
   height: 30px;
-  font-size: 12px;
+  font-size: 14px;
   border-top: solid 1px #ebebeb;
   background-color: white;
   margin-top: 10px;
@@ -233,6 +235,7 @@ main {
 }
 
 .resultadoBusquedaDiv {
+  padding-bottom: 15px;
   width: 60%;
   display: flex;
   flex-direction: row;
@@ -240,14 +243,6 @@ main {
   flex-wrap: wrap;
   gap: 25px;
   justify-content: center;
-}
-
-.titulo-pag {
-  margin: 0;
-  padding-top: 110px;
-  padding-bottom: 20px;
-  font-weight: normal;
-  font-size: 20px;
 }
 
 .productos {
@@ -346,7 +341,7 @@ svg.favoritosActivado {
   position: relative;
   height: 300px;
   overflow: hidden;
-  margin-top: 15px;
+  margin-top: 0px;
   border-radius: 5px;
 }
 .carrusel-portada {
@@ -432,7 +427,7 @@ svg.favoritosActivado {
   align-items: center;
   width: 60%;
   border-radius: 5px;
-  justify-content: space-between;
+  justify-content: space-around;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
   background-color: white;
   height: 135px;
@@ -462,6 +457,11 @@ svg.favoritosActivado {
   margin: 0;
 }
 .productoEnCarrito #eliminarCart {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  align-items: center;
   border: none;
   background: none;
   width: 20px;
@@ -477,64 +477,17 @@ svg.favoritosActivado {
   height: 20px;
 }
 
-.imagenVacio {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 25px;
-  font-size: 20px;
-  margin-top: 150px;
-  color: rgba(0, 0, 0, 0.75);
-}
-.imagenVacio svg {
-  width: 300px;
-  height: 300px;
-  color: rgba(255, 98, 0, 0.5);
-}
-
-.precioFinal {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  align-items: center;
-  justify-content: space-between;
-  width: 60%;
-  padding-top: 10px;
-  border-top: solid 1px #252525;
-}
-.precioFinal h3 {
-  font-size: 30px;
-  margin: 0;
-}
-.precioFinal button {
-  border: none;
-  border-radius: 5px;
-  width: 200px;
-  font-size: 20px;
-  padding: 15px 15px;
-  transition: ease-in-out 0.4s;
-  background-color: black;
-  color: white;
-}
-.precioFinal button:hover {
-  box-shadow: 0px 0px 5px rgb(255, 98, 0);
-  text-shadow: 0px 0px 3px black;
-  width: 250px;
-  background-color: rgb(255, 98, 0);
-  color: white;
-}
-
 .precioCarritoDiv {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-around;
+  width: 240px;
+  justify-content: space-between;
   align-items: center;
 }
 .precioCarritoDiv h3 {
   margin: 0;
-  width: 150px;
+  width: auto;
 }
 
 .cantidad {
@@ -567,6 +520,10 @@ svg.favoritosActivado {
   font-weight: bold;
   border: none;
 }
+.cantidad button:hover {
+  background-color: rgb(255, 98, 0);
+  color: white;
+}
 .cantidad input[type=number]::-webkit-inner-spin-button,
 .cantidad input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
@@ -578,17 +535,40 @@ svg.favoritosActivado {
   outline: none;
   transition: 0.4s;
 }
-.cantidad #sumaBtn:hover {
-  background-color: rgb(255, 98, 0);
-  color: white;
-}
 .cantidad #restaBtn {
   border-top-left-radius: 15px;
   border-bottom-left-radius: 15px;
   outline: none;
   transition: 0.4s;
 }
-.cantidad #restaBtn:hover {
+
+.precioFinal {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-items: center;
+  justify-content: space-between;
+  width: 60%;
+  padding-top: 10px;
+  border-top: solid 1px #252525;
+}
+.precioFinal h3 {
+  font-size: 30px;
+  font-weight: bold;
+  margin: 0;
+}
+.precioFinal button {
+  border: none;
+  border-radius: 5px;
+  width: 200px;
+  font-size: 20px;
+  padding: 15px 15px;
+  transition: ease-in-out 0.4s;
+  background-color: black;
+  color: white;
+}
+.precioFinal button:hover {
+  width: 250px;
   background-color: rgb(255, 98, 0);
   color: white;
 }
@@ -597,7 +577,16 @@ svg.favoritosActivado {
   display: none;
 }
 
+.botonComprar-oculto {
+  display: none;
+}
+
 .actualizarPrecioFinal {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  align-items: center;
   font-size: 15px;
   cursor: pointer;
   transition: 0.4s;
@@ -609,6 +598,22 @@ svg.favoritosActivado {
 }
 .actualizarPrecioFinal:hover {
   background-color: rgb(255, 98, 0);
+}
+
+.imagenVacio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+  font-size: 20px;
+  margin-top: 150px;
+  color: rgba(0, 0, 0, 0.75);
+}
+.imagenVacio svg {
+  width: 300px;
+  height: 300px;
+  color: rgba(255, 98, 0, 0.5);
 }
 
 @media (max-width: 576px) {
@@ -684,9 +689,6 @@ svg.favoritosActivado {
   .nav-bott-link svg {
     height: 12px;
   }
-  .nav-bott-link .bi-person {
-    height: 18px;
-  }
   .carrusel {
     width: 95%;
     height: auto;
@@ -710,7 +712,7 @@ svg.favoritosActivado {
     left: 0px;
   }
   .tituloProductos {
-    font-size: 12px;
+    font-size: 11px;
     text-align: center;
     padding-top: 10px;
     padding-bottom: 10px;
@@ -824,8 +826,8 @@ svg.favoritosActivado {
   }
   .sectionBusqueda {
     width: 100%;
-    padding-top: 105px;
-    padding-bottom: 10px;
+    padding-top: 95px;
+    padding-bottom: 0px;
   }
   .resultadoBusquedaDiv {
     width: 95%;
@@ -859,41 +861,36 @@ svg.favoritosActivado {
   .seccionCarrito {
     width: 100%;
     padding-top: 105px;
-    padding-bottom: 50px;
+    padding-bottom: 10px;
     gap: 15px;
   }
   #listaDeCarrito {
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 10px;
   }
   .productoEnCarrito {
     display: flex;
     flex-direction: row;
     align-items: center;
-    align-items: center;
     width: 95%;
+    padding: 5px;
+    padding-left: 0px;
     border-radius: 5px;
-    justify-content: space-between;
+    justify-content: space-around;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
     background-color: white;
     height: 120px;
   }
   .productoEnCarrito img {
-    height: 40%;
+    height: 50%;
     border-radius: 5px;
-  }
-  .productoEnCarrito h3 {
-    font-size: 16px;
-    width: 10%;
-    margin: 0;
   }
   .productoEnCarrito div {
     width: 30%;
   }
   .productoEnCarrito div h4 {
-    width: 100%;
     font-size: 12px;
     font-weight: bold;
     text-align: left;
@@ -903,65 +900,12 @@ svg.favoritosActivado {
     font-size: 10px;
     font-weight: normal;
     text-align: left;
-    margin: 0;
-  }
-  .productoEnCarrito #eliminarCart {
-    width: 15px;
-    height: 15px;
-  }
-  .productoEnCarrito #eliminarCart:hover {
-    transform: translate(0px, 0px);
-  }
-  .productoEnCarrito #eliminarCart img {
-    width: 15px;
-    height: 15px;
-  }
-  .precioFinal {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    align-items: center;
-    justify-content: space-between;
-    width: 95%;
-    padding-top: 10px;
-    border-top: solid 1px #252525;
-  }
-  .precioFinal h3 {
-    font-size: 30px;
-    margin: 0;
-  }
-  .precioFinal button {
-    border-radius: 5px;
-    width: 130px;
-    font-size: 16px;
-    padding: 10px 5px;
-    transition: ease-in-out 0.4s;
-    background-color: black;
-    color: white;
-  }
-  .precioFinal button:hover {
-    box-shadow: 0px 0px 5px rgb(255, 98, 0);
-    text-shadow: 0px 0px 3px black;
-    width: 250px;
-    background-color: rgb(255, 98, 0);
-    color: white;
-  }
-  .precioCarritoDiv {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
-    align-items: center;
-  }
-  .precioCarritoDiv h3 {
-    margin: 0;
-    width: auto;
   }
   .cantidad {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
+    width: 60px;
   }
   .cantidad input {
     width: 20px;
@@ -982,51 +926,468 @@ svg.favoritosActivado {
     justify-content: center;
     background-color: rgba(255, 98, 0, 0.7);
     height: 20px;
-    width: 25px;
-    font-size: 20px;
+    width: 20px;
+    font-size: 14px;
     font-weight: bold;
     border: none;
   }
-  .cantidad input[type=number]::-webkit-inner-spin-button,
-  .cantidad input[type=number]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
+  .cantidad button:focus {
+    background-color: rgb(255, 98, 0);
+    color: white;
+  }
+  .cantidad #sumaBtn {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    transition: 0.4s;
+  }
+  .cantidad #restaBtn {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    transition: 0.4s;
+  }
+  .precioCarritoDiv {
+    align-items: center;
+    justify-content: space-between;
+    width: 100px;
+  }
+  .precioCarritoDiv h3 {
+    width: 80%;
+    font-size: 14px;
+    font-weight: bold;
     margin: 0;
+    text-align: center;
+  }
+  .precioCarritoDiv #eliminarCart {
+    width: 15px;
+    height: 15px;
+  }
+  .precioCarritoDiv #eliminarCart img {
+    width: 15px;
+    height: 15px;
+  }
+  .precioFinal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    justify-content: space-between;
+    width: 95%;
+    padding-top: 10px;
+    border-top: solid 1px #252525;
+  }
+  .precioFinal h3 {
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold;
+    margin: 0;
+  }
+  .precioFinal button {
+    border-radius: 0px;
+    height: 60px;
+    width: 100%;
+    font-size: 20px;
+    padding: 0px;
+    transition: ease-in-out 0.4s;
+    background-color: rgb(255, 98, 0);
+    color: white;
+  }
+  .precioFinal button:hover {
+    box-shadow: none;
+    text-shadow: none;
+    width: 100%;
+  }
+  .actualizarPrecioFinal {
+    font-size: 15px;
+    height: 30px;
+    width: 280px;
+    margin: 0;
+    padding: 5px;
+    border-radius: 15px;
+  }
+  .actualizarPrecioFinal:hover {
+    background-color: red;
+  }
+}
+@media (min-width: 567px) and (max-width: 769px) {
+  header {
+    justify-content: center;
+    height: 90px;
+    width: 100%;
+    padding: 5px;
+  }
+  .nav {
+    gap: 10px;
+    width: 95%;
+  }
+  .nav-top {
+    width: 100%;
+    gap: 10px;
+  }
+  .nav-top-logo {
+    height: 40px;
+  }
+  .nav-top-search {
+    width: 80%;
+    text-decoration: none;
+  }
+  .nav-top-search-input {
+    width: 100%;
+    height: 40px;
+    font-size: 2vh;
+  }
+  .nav-top-search-input:focus {
+    outline: none;
+  }
+  .nav-top-search-button {
+    width: 30px;
+    right: 5px;
+  }
+  .nav-top-search-button .bi-search {
+    height: 20px;
+  }
+  .nav-top-search-button:hover {
+    background: none;
+  }
+  .nav-top-search-button:hover .bi-search {
+    color: rgba(0, 0, 0, 0.5);
+  }
+  .nav-top-cart {
+    width: 40px;
+  }
+  .nav-top-cart:hover {
+    transform: translate(0px, 0px);
+  }
+  .nav-top-cart img {
+    width: 40px;
+    height: 40px;
+  }
+  .nav-top-cart h5 {
+    top: 10%;
+    right: 7px;
+    font-size: 16px;
+  }
+  .nav-bott {
+    justify-content: space-between;
+  }
+  .nav-bott-link {
+    gap: 5px;
+    color: black;
+    font-size: 16px;
+    transition: 0.3s;
+  }
+  .nav-bott-link:hover {
+    color: black;
+  }
+  .nav-bott-link svg {
+    height: 14px;
+  }
+  .nav .bi-search {
+    width: 20px;
+  }
+  .carrusel {
+    width: 95%;
+    height: auto;
+    border-radius: 5px;
+  }
+  .carrusel-btn-izq, .carrusel-btn-der {
+    width: 15px;
+    height: 15px;
+    padding: 0px;
+  }
+  .carrusel-btn-izq:hover, .carrusel-btn-der:hover {
+    color: rgba(0, 0, 0, 0.5);
+  }
+  .carrusel-btn-der {
+    right: 3px;
+  }
+  .carrusel-btn-izq {
+    left: 3px;
+  }
+  .tituloProductos {
+    font-size: 16px;
+    text-align: center;
+    padding-bottom: 10px;
+  }
+  .productos {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 95%;
+    gap: 10px;
+  }
+  .productoGeneral {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    padding: 10px;
+    width: 48%;
+    height: 120px;
+    transition: 0.3s;
+  }
+  .productoGeneral img {
+    width: 100px;
+    height: auto;
+    object-fit: cover;
+  }
+  .productoGeneral div {
+    width: 190px;
+  }
+  .productoGeneral div p {
+    font-size: 12px;
+  }
+  .productoGeneral div h3 {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  .metodosPago {
+    width: 95%;
+    padding: 15px;
+  }
+  .metodosPago h3, .metodosPago p {
+    margin: 0;
+  }
+  .metodosPago h3 {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  .metodosPago p {
+    font-size: 14px;
+  }
+  .metodosPago-imagenes img {
+    width: 40%;
+  }
+  .metodosPago-imagenes img:nth-child(2) {
+    border-left: solid 2px #ebebeb;
+    width: 45%;
+  }
+  .productoEncontrado {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 5px;
+    gap: 0px;
+    width: 30%;
+    height: 320px;
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.3);
+  }
+  .productoEncontrado:hover {
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.3);
+  }
+  .productoEncontrado h3 {
+    font-size: 20px;
+    color: black;
+    font-weight: bold;
+    padding-bottom: 5px;
+  }
+  .productoEncontrado p {
+    width: 100%;
+    text-align: center;
+    font-size: 12px;
+    padding: 0px 10px;
+    margin: 0;
+  }
+  .productoEncontrado button {
+    border: none;
+    height: 30px;
+    font-size: 12px;
+    background-color: rgb(255, 98, 0);
+    color: white;
+    margin-top: 5px;
+  }
+  .productoEncontrado img {
+    height: 200px;
+    width: 100%;
+    padding: 5px;
+    object-fit: cover;
+  }
+  .productoEncontrado svg {
+    top: 10px;
+    right: 10px;
+    color: #afaeae;
+    width: 20px;
+    height: 20px;
+  }
+  .productoEncontrado svg path {
+    width: 100%;
+    height: 100%;
+  }
+  svg.favoritosActivado {
+    transition: 0.3s;
+    color: rgb(255, 98, 0);
+  }
+  .sectionBusqueda {
+    width: 100%;
+    padding-top: 105px;
+    padding-bottom: 0px;
+  }
+  .resultadoBusquedaDiv {
+    width: 95%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .seccionFav {
+    padding-top: 110px;
+    padding-bottom: 10px;
+  }
+  .imagenVacio {
+    font-size: 18px;
+    margin-top: 150px;
+  }
+  .seccionCarrito {
+    width: 100%;
+    padding-top: 105px;
+    padding-bottom: 10px;
+    gap: 20px;
+  }
+  #listaDeCarrito {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .productoEnCarrito {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 95%;
+    padding: 15px;
+    padding-left: 0px;
+    border-radius: 5px;
+    justify-content: space-around;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+    background-color: white;
+    height: 150px;
+  }
+  .productoEnCarrito img {
+    height: 100%;
+    border-radius: 5px;
+  }
+  .productoEnCarrito div {
+    width: 35%;
+  }
+  .productoEnCarrito div h4 {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: left;
+    margin: 0;
+  }
+  .productoEnCarrito div p {
+    font-size: 16px;
+    font-weight: normal;
+    text-align: left;
+  }
+  .cantidad {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 90px;
+  }
+  .cantidad input {
+    width: 30px;
+    color: black;
+    background-color: rgba(255, 98, 0, 0.3);
+    border: none;
+    height: 30px;
+    font-size: 16px;
+    text-align: center;
+    margin: 0;
+  }
+  .cantidad button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 98, 0, 0.7);
+    height: 30px;
+    width: 30px;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+  }
+  .cantidad button:focus {
+    background-color: rgb(255, 98, 0);
+    color: white;
   }
   .cantidad #sumaBtn {
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
-    outline: none;
     transition: 0.4s;
-  }
-  .cantidad #sumaBtn:hover {
-    background-color: rgb(255, 98, 0);
-    color: white;
   }
   .cantidad #restaBtn {
     border-top-left-radius: 15px;
     border-bottom-left-radius: 15px;
-    outline: none;
     transition: 0.4s;
   }
-  .cantidad #restaBtn:hover {
+  .precioCarritoDiv {
+    align-items: center;
+    justify-content: space-between;
+    width: 150px;
+  }
+  .precioCarritoDiv h3 {
+    width: 80%;
+    font-size: 22px;
+    font-weight: bold;
+    margin: 0;
+    text-align: center;
+  }
+  .precioCarritoDiv #eliminarCart {
+    width: 20px;
+    height: 20px;
+  }
+  .precioCarritoDiv #eliminarCart img {
+    width: 20px;
+    height: 20px;
+  }
+  .precioFinal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    justify-content: space-between;
+    width: 95%;
+    padding-top: 10px;
+    border-top: solid 1px #252525;
+  }
+  .precioFinal h3 {
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    margin: 0;
+  }
+  .precioFinal button {
+    border-radius: 30px;
+    height: 60px;
+    width: 100%;
+    font-size: 25px;
+    padding: 0px;
+    transition: ease-in-out 0.4s;
     background-color: rgb(255, 98, 0);
     color: white;
   }
-  .actualizarPrecioFinal-oculto {
-    display: none;
+  .precioFinal button:hover {
+    box-shadow: none;
+    text-shadow: none;
+    width: 100%;
   }
   .actualizarPrecioFinal {
     font-size: 15px;
-    cursor: pointer;
-    transition: 0.4s;
+    height: 40px;
+    width: 500px;
+    margin: 0;
+    margin-top: 10px;
     padding: 5px;
-    border-radius: 5px;
-    text-align: center;
-    background-color: red;
-    color: white;
+    border-radius: 20px;
   }
   .actualizarPrecioFinal:hover {
-    background-color: rgb(255, 98, 0);
+    background-color: red;
   }
 }
 

@@ -85,7 +85,7 @@ function mostrarResultados(listaProductos) { //muestra los resultados de la busq
           toast: true,
           position: 'top-end',
           showConfirmButton: false,
-          timer: 1500,
+          timer: 1000,
           timerProgressBar: true,
           didOpen: (toast) => {
             toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -95,14 +95,14 @@ function mostrarResultados(listaProductos) { //muestra los resultados de la busq
         Toast.fire({
           icon: 'success',
           iconColor:'rgba(255, 98, 0, 0.70)',
-          title: 'Agregado a Carrito!'
+          title: 'Agregado al Carrito!'
         })
       }else {
         const Toast = Swal.mixin({
           toast: true,
           position: 'bottom-end',
           showConfirmButton: false,
-          timer: 1500,
+          timer: 1000,
           timerProgressBar: true,
           didOpen: (toast) => {
             toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -127,7 +127,7 @@ function mostrarResultados(listaProductos) { //muestra los resultados de la busq
           toast: true,
           position: 'top-end',
           showConfirmButton: false,
-          timer: 1500,
+          timer: 1000,
           timerProgressBar: true,
           didOpen: (toast) => {
             toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -151,7 +151,7 @@ function mostrarResultados(listaProductos) { //muestra los resultados de la busq
           toast: true,
           position: 'top-end',
           showConfirmButton: false,
-          timer: 1500,
+          timer: 1000,
           timerProgressBar: true,
           didOpen: (toast) => {
             toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -215,14 +215,14 @@ function mostrarCarrito(carrito) {
     productoCarrito.innerHTML = `
     <img src="${productoX.imgURL}" title="${productoX.nombre}" alt="Imagen de ${productoX.nombre}">
     <div>
-      <h4>${productoX.nombre}<h4>
+      <h4>${productoX.nombre}</h4>
       <p>${productoX.descripcion}</p>
     </div>
-    <div class="cantidad">
+    <span class="cantidad">
       <button id="restaBtn"> - </button>
       <input type="number" readonly>
       <button id="sumaBtn"> + </button>
-    </div>`
+    </span>`
     
     const restaBtn = productoCarrito.querySelector('#restaBtn');//boton restar
     const sumaBtn = productoCarrito.querySelector('#sumaBtn');//boton sumar
@@ -231,7 +231,7 @@ function mostrarCarrito(carrito) {
     sumaBtn.addEventListener("click",sumarUno);
     restaBtn.addEventListener("click",restarUno);
     let precioParcial = parseInt(productoX.precio) * inputCantidad.value;
-    const precioProductoCarrito = document.createElement('div');
+    const precioProductoCarrito = document.createElement('span');
     precioProductoCarrito.classList.add("precioCarritoDiv");
     precioProductoCarrito.innerHTML =`<h3>$${precioParcial.toLocaleString()}</h3>
     <button id="eliminarCart"><img src="images/trash-can.png" alt="Boton para eliminar del carrito"></button>`
@@ -239,6 +239,8 @@ function mostrarCarrito(carrito) {
     function sumarUno() {
       const precioFinalDiv = document.getElementById("precioFinal");//si toca el input que aparezca el boton de actualizar
       const actualizarPrecioFinal = precioFinalDiv.querySelector('p');
+      const botonComprarAhora = precioFinalDiv.querySelector('button');
+      botonComprarAhora.classList.add("botonComprar-oculto");
       actualizarPrecioFinal.classList.remove('actualizarPrecioFinal-oculto')
       actualizarPrecioFinal.classList.add("actualizarPrecioFinal");
 
@@ -261,6 +263,8 @@ function mostrarCarrito(carrito) {
       if (inputCantidad.value > 1 ) {
         const precioFinalDiv = document.getElementById("precioFinal");
         const actualizarPrecioFinal = precioFinalDiv.querySelector('p');
+        const botonComprarAhora = precioFinalDiv.querySelector('button');
+        botonComprarAhora.classList.add("botonComprar-oculto");
         actualizarPrecioFinal.classList.remove('actualizarPrecioFinal-oculto')
         actualizarPrecioFinal.classList.add("actualizarPrecioFinal");
 
@@ -287,7 +291,7 @@ function mostrarCarrito(carrito) {
         toast: true,
         position: 'top-end',
         showConfirmButton: false,
-        timer: 1500,
+        timer: 1000,
         timerProgressBar: true,
         didOpen: (toast) => {
           toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -318,7 +322,7 @@ function mostrarCarrito(carrito) {
     seccionCarrito.appendChild(precioFinalDiv);
     const botonComprarAhora = precioFinalDiv.querySelector('button');
     const actualizarPrecioFinal = precioFinalDiv.querySelector('p');
-    actualizarPrecioFinal.classList.add('actualizarPrecioFinal-oculto')
+    actualizarPrecioFinal.classList.add('actualizarPrecioFinal-oculto');
     actualizarPrecioFinal.addEventListener('click' ,() => {
       location.reload();
     })
@@ -329,6 +333,7 @@ function mostrarCarrito(carrito) {
         icon: 'success',
         showConfirmButton: false,
         title: 'La compra se realizó con éxito!',
+        allowOutsideClick: false,
         allowEnterKey: false,
         timerProgressBar: true,
         timer: 3000,
@@ -340,7 +345,7 @@ function mostrarCarrito(carrito) {
       location.reload();
       contadorCarritoValor = 0;
       localStorage.setItem('contadorCarrito',contadorCarritoValor);
-      const carritoNuevo = 0; 
+      const carritoNuevo = 0;
       localStorage.setItem('carrito',carritoNuevo);
     }
   } else {
@@ -394,7 +399,7 @@ function mostrarFavoritos(fav) { //construye igual que cuando buscas pero ahora 
           toast: true,
           position: 'top-end',
           showConfirmButton: false,
-          timer: 1500,
+          timer: 1000,
           timerProgressBar: true,
           didOpen: (toast) => {
             toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -411,7 +416,7 @@ function mostrarFavoritos(fav) { //construye igual que cuando buscas pero ahora 
           toast: true,
           position: 'bottom-end',
           showConfirmButton: false,
-          timer: 1500,
+          timer: 1000,
           timerProgressBar: true,
           didOpen: (toast) => {
             toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -433,7 +438,7 @@ function mostrarFavoritos(fav) { //construye igual que cuando buscas pero ahora 
         toast: true,
         position: 'top-end',
         showConfirmButton: false,
-        timer: 1500,
+        timer: 1000,
         timerProgressBar: true,
         didOpen: (toast) => {
           toast.addEventListener('mouseenter', Swal.stopTimer)

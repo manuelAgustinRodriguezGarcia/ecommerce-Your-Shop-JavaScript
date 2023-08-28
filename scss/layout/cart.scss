@@ -20,7 +20,7 @@
   align-items: center;
   width: 60%;
   border-radius: 5px;
-  justify-content:space-between;
+  justify-content:space-around;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
   background-color: white;
   height: 135px;
@@ -50,6 +50,9 @@
   }
   
   #eliminarCart {
+    @include d-flex-row;
+    justify-content: center;
+    align-items: center;
     border: none;
     background: none;
     width: 20px;
@@ -66,58 +69,14 @@
   }
 }
 
-.imagenVacio { //para vacio en favoritos y carrito
-  @include d-flex-col;
-  align-items: center;
-  justify-content: center;
-  gap: 25px;
-  font-size: 20px;
-  margin-top: 150px;
-  color: rgba(0, 0, 0, 0.75);
-  svg {
-    width: 300px;
-    height: 300px;
-    color: rgba(255, 98, 0, 0.50);
-  }
-}
-
-.precioFinal {
-  @include d-flex-row;
-  align-items: center;
-  justify-content: space-between;
-  width: 60%;
-  padding-top: 10px;
-  border-top: solid 1px #252525;
-  h3 {
-    font-size: 30px;
-    margin: 0;
-  }
-  button {
-    border: none;
-    border-radius: 5px;
-    width: 200px;
-    font-size: 20px;
-    padding: 15px 15px;
-    transition: ease-in-out .4s;
-    background-color: black;
-    color: white;
-    &:hover {
-      box-shadow: 0px 0px 5px $naranjaMain;
-      text-shadow: 0px 0px 3px black;
-      width: 250px;
-      background-color: $naranjaMain;
-      color: white;
-    }
-  }
-}
-
 .precioCarritoDiv {
   @include d-flex-row;
-  justify-content: space-around;
+  width: 240px;
+  justify-content: space-between;
   align-items: center;
   h3 {
     margin: 0;
-    width: 150px;
+    width: auto;
   }
 }
 
@@ -145,6 +104,10 @@
     font-size: 25px;
     font-weight: bold;
     border: none;
+    &:hover {
+      background-color: $naranjaMain;
+      color: white;
+    }
   }
   
   input[type=number]::-webkit-inner-spin-button, 
@@ -156,18 +119,39 @@
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
     outline: none;
-    transition: .4s;  
-    &:hover {
-      background-color: $naranjaMain;
-      color: white;
-    }
+    transition: .4s;
   }
   #restaBtn {
     border-top-left-radius: 15px;
     border-bottom-left-radius: 15px;
     outline: none;
     transition: .4s;
+  }
+}
+
+.precioFinal {
+  @include d-flex-row;
+  align-items:center;
+  justify-content: space-between;
+  width: 60%;
+  padding-top: 10px;
+  border-top: solid 1px #252525;
+  h3 {
+    font-size: 30px;
+    font-weight: bold;
+    margin: 0;
+  }
+  button {
+    border: none;
+    border-radius: 5px;
+    width: 200px;
+    font-size: 20px;
+    padding: 15px 15px;
+    transition: ease-in-out .4s;
+    background-color: black;
+    color: white;
     &:hover {
+      width: 250px;
       background-color: $naranjaMain;
       color: white;
     }
@@ -178,7 +162,14 @@
   display: none;
 }
 
+.botonComprar-oculto {
+  display: none;
+}
+
 .actualizarPrecioFinal{
+  @include d-flex-row;
+  justify-content: center;
+  align-items: center;
   font-size: 15px;
   cursor: pointer;
   transition: .4s;
@@ -186,9 +177,23 @@
   border-radius: 5px;
   text-align: center;
   background-color: red;
-  
   color: white;
   &:hover {
     background-color: $naranjaMain;
+  }
+}
+
+.imagenVacio { //para vacio en favoritos y carrito
+  @include d-flex-col;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+  font-size: 20px;
+  margin-top: 150px;
+  color: rgba(0, 0, 0, 0.75);
+  svg {
+    width: 300px;
+    height: 300px;
+    color: rgba(255, 98, 0, 0.50);
   }
 }
