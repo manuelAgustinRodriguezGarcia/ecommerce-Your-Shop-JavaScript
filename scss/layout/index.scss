@@ -19,7 +19,7 @@ main {
   box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.3);
   transition: .3s;
   &:hover {
-    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.4);
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
   }
   p {
     width: 100%;
@@ -178,7 +178,7 @@ svg.favoritosActivado {
   position: relative;
   height: 300px;
   overflow: hidden;
-  margin-top: 0px;
+  margin-top: 95px;
   border-radius: 5px;
   &-portada {
     width: 400%;/*si son x imgs serian x * 100%*/
@@ -198,13 +198,10 @@ svg.favoritosActivado {
   &-btn-izq, &-btn-der {
     display: flex;
     position: absolute;
-    width: 25px;
-    height: 25px;
+    width: 20px;
+    height: 20px;
     top: 50%;
     font-size: 10px;
-    background-color: transparent;
-    border-radius: 50%;
-    padding: 5px;
     cursor: pointer;
     color: rgba(0, 0, 0, 0.4);
     transform: translate(0,-50%);

@@ -72,7 +72,6 @@ function mostrarResultados(listaProductos) { //muestra los resultados de la busq
       <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
       </svg>
       <button>Agregar al Carrito</button>`;
-    
     resultadoBusqueda.appendChild(productoEncontradoDiv);
     const botonAgregarCarrito = productoEncontradoDiv.querySelector('button');
     botonAgregarCarrito.addEventListener('click', function (){
@@ -166,6 +165,9 @@ function mostrarResultados(listaProductos) { //muestra los resultados de la busq
     });
     resultadoBusqueda.appendChild(productoEncontradoDiv)
     seccionBusqueda.appendChild(resultadoBusqueda)
+    seccionBusqueda.classList.add("sectionBusqueda")
+    const carrusel = document.getElementById('carrusel'); //cambia el margin del carrusel asi no queda tan separado
+    carrusel.style.marginTop = `5px`;
   });
 }
 

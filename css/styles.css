@@ -175,7 +175,7 @@ main {
   transition: 0.3s;
 }
 .productoEncontrado:hover {
-  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.4);
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
 }
 .productoEncontrado p {
   width: 100%;
@@ -341,7 +341,7 @@ svg.favoritosActivado {
   position: relative;
   height: 300px;
   overflow: hidden;
-  margin-top: 0px;
+  margin-top: 95px;
   border-radius: 5px;
 }
 .carrusel-portada {
@@ -362,13 +362,10 @@ svg.favoritosActivado {
 .carrusel-btn-izq, .carrusel-btn-der {
   display: flex;
   position: absolute;
-  width: 25px;
-  height: 25px;
+  width: 20px;
+  height: 20px;
   top: 50%;
   font-size: 10px;
-  background-color: transparent;
-  border-radius: 50%;
-  padding: 5px;
   cursor: pointer;
   color: rgba(0, 0, 0, 0.4);
   transform: translate(0, -50%);
@@ -486,6 +483,8 @@ svg.favoritosActivado {
   align-items: center;
 }
 .precioCarritoDiv h3 {
+  font-size: 24px;
+  font-weight: bold;
   margin: 0;
   width: auto;
 }
@@ -641,7 +640,7 @@ svg.favoritosActivado {
   .nav-top-search-input {
     width: 100%;
     height: 40px;
-    font-size: 1.4vh;
+    font-size: 11px;
   }
   .nav-top-search-input:focus {
     outline: none;
@@ -692,7 +691,7 @@ svg.favoritosActivado {
   .carrusel {
     width: 95%;
     height: auto;
-    margin-top: 0px;
+    margin-top: 90px;
     border-radius: 5px;
   }
   .carrusel-btn-izq, .carrusel-btn-der {
@@ -826,7 +825,7 @@ svg.favoritosActivado {
   }
   .sectionBusqueda {
     width: 100%;
-    padding-top: 95px;
+    padding-top: 105px;
     padding-bottom: 0px;
   }
   .resultadoBusquedaDiv {
@@ -1087,6 +1086,7 @@ svg.favoritosActivado {
   .carrusel {
     width: 95%;
     height: auto;
+    margin-top: 90px;
     border-radius: 5px;
   }
   .carrusel-btn-izq, .carrusel-btn-der {
@@ -1388,6 +1388,216 @@ svg.favoritosActivado {
   }
   .actualizarPrecioFinal:hover {
     background-color: red;
+  }
+}
+@media (min-width: 769px) and (max-width: 1440px) {
+  .nav {
+    gap: 5px;
+    width: 80%;
+  }
+  .nav-top {
+    justify-content: space-between;
+    width: 100%;
+  }
+  .nav-top-logo {
+    height: 50px;
+  }
+  .nav-top-search {
+    width: 65%;
+    text-decoration: none;
+  }
+  .nav-top-search-input {
+    width: 100%;
+    height: 40px;
+    font-size: 16px;
+  }
+  .nav-top-search-input:focus {
+    outline: solid 1.5px rgba(0, 0, 0, 0.2);
+  }
+  .nav-top-search-button {
+    width: 40px;
+    right: 0px;
+  }
+  .nav-top-search-button .bi-search {
+    height: 20px;
+  }
+  .nav-top-search-button:hover {
+    background: #252525;
+  }
+  .nav-top-search-button:hover .bi-search {
+    color: white;
+  }
+  .nav-top-cart {
+    width: 40px;
+  }
+  .nav-top-cart:hover {
+    transform: translate(0px, -5px);
+  }
+  .nav-top-cart img {
+    width: 40px;
+    height: 40px;
+  }
+  .nav-top-cart h5 {
+    top: 10%;
+    right: 7px;
+    font-size: 16px;
+  }
+  .nav-bott {
+    justify-content: space-between;
+  }
+  .nav-bott-link {
+    gap: 5px;
+    color: rgba(0, 0, 0, 0.75);
+    font-size: 16px;
+    transition: 0.3s;
+  }
+  .nav-bott-link:hover {
+    color: black;
+  }
+  .nav-bott-link svg {
+    height: 14px;
+  }
+  .nav .bi-search {
+    width: 20px;
+  }
+  .carrusel {
+    width: 80%;
+    height: auto;
+    margin-top: 90px;
+    border-radius: 5px;
+  }
+  .carrusel-btn-izq, .carrusel-btn-der {
+    width: 20px;
+    height: 20px;
+    padding: 0px;
+  }
+  .carrusel-btn-izq:hover, .carrusel-btn-der:hover {
+    color: rgba(0, 0, 0, 0.8);
+  }
+  .tituloProductos {
+    font-size: 20px;
+    text-align: center;
+    padding-bottom: 10px;
+  }
+  .productos {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 80%;
+  }
+  .productoGeneral {
+    width: 30%;
+    height: 150px;
+  }
+  .productoGeneral img {
+    width: 110px;
+    height: auto;
+    object-fit: cover;
+  }
+  .productoGeneral div {
+    width: 190px;
+  }
+  .productoGeneral div p {
+    font-size: 16px;
+  }
+  .productoGeneral div h3 {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  .metodosPago {
+    width: 80%;
+    padding: 15px;
+  }
+  .metodosPago h3 {
+    font-size: 20px;
+  }
+  .metodosPago p {
+    font-size: 18px;
+  }
+  .metodosPago-imagenes img {
+    width: 30%;
+  }
+  .metodosPago-imagenes img:nth-child(2) {
+    border-left: solid 3px #ebebeb;
+    width: 40%;
+  }
+  .productoEncontrado {
+    width: 245px;
+    height: 365px;
+  }
+  .productoEncontrado button {
+    font-size: 12px;
+  }
+  .productoEncontrado img {
+    width: 240px;
+  }
+  .productoEncontrado svg {
+    top: 15px;
+    right: 15px;
+  }
+  .resultadoBusquedaDiv {
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+  }
+  .imagenVacio {
+    font-size: 20px;
+    margin-top: 150px;
+  }
+  #listaDeCarrito {
+    gap: 15px;
+  }
+  .productoEnCarrito {
+    width: 80%;
+    justify-content: space-around;
+    height: 150px;
+  }
+  .productoEnCarrito div {
+    width: 35%;
+  }
+  .productoEnCarrito div h4 {
+    font-size: 20px;
+  }
+  .productoEnCarrito div p {
+    font-size: 18px;
+  }
+  .cantidad input {
+    width: 35px;
+    height: 30px;
+  }
+  .cantidad button {
+    width: 30px;
+    font-size: 22px;
+  }
+  .precioCarritoDiv {
+    justify-content: space-around;
+    width: 200px;
+  }
+  .precioCarritoDiv h3 {
+    width: 80%;
+    font-size: 22px;
+  }
+  .precioFinal {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 80%;
+  }
+  .precioFinal h3 {
+    font-size: 28px;
+  }
+  .precioFinal button {
+    width: 160px;
+    font-size: 18px;
+  }
+  .precioFinal button:hover {
+    width: 200px;
   }
 }
 

@@ -21,7 +21,7 @@
       &-input {
         width: 100%;
         height: 40px;
-        font-size: 1.4vh;
+        font-size: 11px;
         &:focus {
           outline: none;
         }
@@ -76,7 +76,7 @@
   .carrusel {
     width: 95%;
     height: auto;
-    margin-top: 0px;
+    margin-top: 90px;
     border-radius: 5px;
     &-btn-izq, &-btn-der {
       width: 10px;
@@ -220,7 +220,7 @@
 
   .sectionBusqueda{
     width: 100%;
-    padding-top: 95px;
+    padding-top: 105px;
     padding-bottom: 0px;
   }
 
@@ -481,6 +481,7 @@
   .carrusel { //carrusel - tablet
     width: 95%;
     height: auto;
+    margin-top: 90px;
     border-radius: 5px;
     &-btn-izq, &-btn-der {
       width: 15px;
@@ -788,4 +789,221 @@
         background-color: red;
       }
     }
+}
+
+@media (min-width: 769px) and (max-width: 1440px) { //medias notebook
+  .nav {
+    gap: 5px;
+    width: 80%;
+    &-top {
+      justify-content: space-between;
+      width: 100%;
+      &-logo {
+        height: 50px;
+      }
+      &-search {
+        width: 65%;
+        text-decoration: none;
+        &-input {
+          width: 100%;
+          height: 40px;
+          font-size: 16px;
+          &:focus {
+            outline: solid 1.5px rgba(0, 0, 0, 0.2);
+          }
+        }
+        &-button {
+          width: 40px;
+          right: 0px;
+          .bi-search {
+            height: 20px;
+          }
+          &:hover {
+            background: #252525;
+            .bi-search {
+              color: white;
+            }
+          }
+        }
+      }
+      &-cart {
+        width: 40px;
+        &:hover {
+          transform: translate(0px,-5px);
+        }
+        img {
+          width: 40px;
+          height: 40px;
+        }
+        h5 {
+          top: 10%;
+          right: 7px;
+          font-size: 16px;
+        }
+      }
+    }
+    &-bott {
+      justify-content: space-between;
+      &-link {
+        gap: 5px;
+        color: rgba(0, 0, 0, 0.75);
+        font-size: 16px;
+        transition: .3s;
+        &:hover {
+          color: black;
+        }
+        svg {
+          height: 14px;
+        }
+      }
+    }
+    .bi-search{
+      width: 20px;
+    }
+  }
+  .carrusel { //carrusel - notebook
+    width: 80%;
+    height: auto;
+    margin-top: 90px;
+    border-radius: 5px;
+    &-btn-izq, &-btn-der {
+      width: 20px;
+      height: 20px;
+      padding: 0px;
+      &:hover {
+        color: rgba(0, 0, 0, 0.8);
+      }
+    }
+  }
+
+  .tituloProductos {//titulo productos - index - notebook
+    font-size: 20px;
+    text-align: center;
+    padding-bottom: 10px;
+  }
+
+  .productos {//productos generales en index - notebook
+    @include d-flex-row;
+    justify-content: space-between;
+    width: 80%;
+  }
+
+  .productoGeneral {
+    width: 30%;
+    height: 150px;
+    img {
+      width: 110px;
+      height: auto;
+      object-fit: cover;
+    }
+    div {
+      width: 190px;
+      p {
+        font-size: 16px;
+      }
+      h3 {
+        font-size: 20px;
+        font-weight: bold;
+      }
+    }
+  }
+  //metodos de pago - index - notebook
+  .metodosPago {
+    width: 80%;
+    padding: 15px;
+    h3{
+      font-size: 20px;
+    }
+    p {
+      font-size: 18px;
+    }
+    &-imagenes {
+      img {
+        width: 30%;
+        &:nth-child(2) {
+          border-left: solid 3px #ebebeb;
+          width: 40%;
+        }
+      }
+    }
+  }
+  //productoEncontrado - notebook
+  .productoEncontrado {
+    width: 245px;
+    height: 365px;
+    button {
+      font-size: 12px;
+    }
+    img {
+      width: 240px;
+    }
+    svg {
+      top: 15px;
+      right: 15px;
+    }
+  }
+  .resultadoBusquedaDiv {
+    width: 80%;
+    @include d-flex-row;
+    flex-wrap:wrap;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+  }
+  //favoritos - notebook
+  .imagenVacio {
+    font-size: 20px;
+    margin-top: 150px;
+  }
+  //carrito - notebook
+  #listaDeCarrito {
+    gap: 15px;
+  }
+  .productoEnCarrito {
+    width: 80%;
+    justify-content: space-around;
+    height: 150px;
+    div {
+      width: 35%;
+      h4 {
+        font-size: 20px;
+      }
+      p {
+        font-size: 18px;
+      }
+    }
+  }
+
+  .cantidad {
+    input {
+      width: 35px;
+      height: 30px;
+    }
+    button {
+      width: 30px;
+      font-size: 22px;
+    }
+  }
+  .precioCarritoDiv {
+    justify-content: space-around;
+    width: 200px;
+    h3 {
+      width: 80%;
+      font-size: 22px;
+    }
+  }
+  .precioFinal {
+    @include d-flex-row;
+    width: 80%;
+    h3 {
+      font-size: 28px;
+    }
+    button {
+      width: 160px;
+      font-size: 18px;
+      &:hover {
+        width: 200px;
+      }
+    }
+  }
 }
